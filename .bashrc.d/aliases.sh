@@ -24,3 +24,5 @@ function make(){
 function rebash(){
     source ~/.bashrc
 }
+
+alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
