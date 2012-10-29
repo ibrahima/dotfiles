@@ -1,0 +1,26 @@
+alias ack='ack-grep'
+
+function make(){
+    /usr/bin/make "$@"
+    EXITCODE=$?
+    QUIET=false
+    OPTIND=1
+    while getopts ":q" opt; do
+	case $opt in
+	    q)
+		QUIET=true
+		;;
+	esac
+    done
+    if ! $QUIET; then
+	if [ $EXITCODE -eq 0 ]; then
+	    ogg123 -q /usr/share/sounds/freedesktop/stereo/complete.oga
+	else
+	    ogg123 -q /usr/share/sounds/ubuntu/stereo/dialog-warning.ogg
+	fi
+    fi
+}
+
+function rebash(){
+    source ~/.bashrc
+}
