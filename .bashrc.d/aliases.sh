@@ -1,7 +1,7 @@
 alias ack='ack-grep'
 
 function make(){
-    /usr/bin/make "$@"
+    /usr/bin/make "$@" -j $(nproc)
     EXITCODE=$?
     QUIET=false
     OPTIND=1
