@@ -69,5 +69,3 @@
   (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
   (local-set-key (kbd "<mouse-2>") 'semantic-ia-fast-jump))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
-
-(server-start)

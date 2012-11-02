@@ -26,3 +26,5 @@ function rebash(){
 }
 
 alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
+
+alias emacs='emacsclient -a "" -t'
