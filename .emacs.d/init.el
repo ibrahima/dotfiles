@@ -69,3 +69,16 @@
   (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
   (local-set-key (kbd "<mouse-2>") 'semantic-ia-fast-jump))
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
+
+(global-linum-mode 1)
+(show-paren-mode 1)
+
+(require 'undo-tree)
+(global-undo-tree-mode 1)
+
+(defalias 'redo 'undo-tree-redo)
+(global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
+(global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】
+
+; MobileOrg
+(setq org-mobile-directory "~/Dropbox/Org")
