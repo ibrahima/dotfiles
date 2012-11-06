@@ -75,6 +75,6 @@ run_scripts()
 
 run_scripts ~/.bashrc.d
 
-#source /opt/ros/electric/setup.bash
-#export ROS_MASTER_URI=http://c1:11311
 export PATH=~/bin:$PATH
+
+export ACK_PAGER="less -RXF"
