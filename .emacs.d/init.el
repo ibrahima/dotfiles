@@ -1,9 +1,15 @@
-(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
-
 (require 'package)
 (package-initialize)
 
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives 
+	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(require 'hippie-exp)
+
+(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 
 (require 'ido)
 (ido-mode t)
@@ -31,6 +37,23 @@
 (column-number-mode)
 (require 'tabbar)
 (tabbar-mode)
+
+(require 'uniquify) 
+(setq 
+  uniquify-buffer-name-style 'post-forward
+  uniquify-separator ":")
+
+(defun load-init-el ()
+  "Loads init.el"
+  (interactive)
+  (load-file "~/.emacs.d/init.el"))
+
+(defun find-init-el ()
+  "Finds init.el"
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+(windmove-default-keybindings 'meta)
 
 ;; Beginning of the el4r block:
 ;; RCtool generated this block automatically. DO NOT MODIFY this block!
@@ -82,3 +105,18 @@
 
 ; MobileOrg
 (setq org-mobile-directory "~/Dropbox/Org")
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
