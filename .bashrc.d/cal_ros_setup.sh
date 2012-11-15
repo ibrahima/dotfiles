@@ -55,3 +55,5 @@ eval $ROBOT_MODE
 . /opt/ros/$ROS_VERSION/setup.bash
 
 export ROS_PACKAGE_PATH=~/ros:$ROS_PACKAGE_PATH
+
+alias rosenv='env|grep ROS'
