@@ -28,10 +28,14 @@ isposint ()
     fi
 }
 
-
 cu ()
 {
-if isposint $1; then
+# With no argument, goes up 1
+if [ -z $1 ]; then
+    cd ..
+# With a numerical argument, goes up N times
+elif isposint $1; then
+    unset ups
     for i in $(seq 1 $1)
     do
         ups=$ups"../"
@@ -41,3 +45,6 @@ else
     echo "Invalid argument; must be a positive integer"
 fi
 }
+
+# [c]hange [b]ack
+alias cb='cd -'
