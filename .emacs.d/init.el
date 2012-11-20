@@ -1,3 +1,5 @@
+(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
+
 (require 'package)
 (package-initialize)
 
@@ -8,8 +10,6 @@
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (require 'hippie-exp)
-
-(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 
 (require 'ido)
 (ido-mode t)
