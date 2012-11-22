@@ -1,1 +1,2 @@
-wmname LG3D
+wmname LG3D 2> /dev/null
+
