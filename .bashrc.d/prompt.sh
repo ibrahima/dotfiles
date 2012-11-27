@@ -53,8 +53,11 @@ function resetcolor {
 # From http://serverfault.com/questions/221108/different-color-prompts-for-different-machines-when-using-terminal-ssh
 hostnamecolor=$(hostname | od | tr ' ' '\n' | awk '{total = total + $1}END{print (total % 256)}')
 
+# Use the builtin __git_ps1 function, just with brackets, and show dirty state
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
+    __git_ps1 | tr '()' '[]'
 }
 
 
