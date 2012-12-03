@@ -14,8 +14,10 @@ function make(){
     done
     if ! $QUIET; then
 	if [ $EXITCODE -eq 0 ]; then
+	    alert "Make succeeded"
 	    ogg123 -q /usr/share/sounds/freedesktop/stereo/complete.oga
 	else
+	    alert "Make failed"
 	    ogg123 -q /usr/share/sounds/ubuntu/stereo/dialog-warning.ogg
 	fi
     fi
