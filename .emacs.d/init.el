@@ -28,6 +28,8 @@
 (add-hook 'python-mode-hook '(lambda () 
  (setq python-indent 4)))
 
+(setq default-tab-width 4)
+
 ;; Python Hook
 (add-hook 'python-mode-hook
           (function (lambda ()
@@ -53,7 +55,18 @@
   (interactive)
   (find-file "~/.emacs.d/init.el"))
 
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+
 (windmove-default-keybindings 'meta)
+
+(xterm-mouse-mode)
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 ;; Beginning of the el4r block:
 ;; RCtool generated this block automatically. DO NOT MODIFY this block!
@@ -112,7 +125,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default))))
+ '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
+ '(org-agenda-files (quote ("~/SparkleShare/braindump/braindump.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
