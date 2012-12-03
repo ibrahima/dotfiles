@@ -64,8 +64,8 @@ function parse_git_branch {
 # which seems to be taken from http://arighi.blogspot.com/2009/05/battery-life-in-bash-prompt.html
 function get_battery_info()
 {
-    BATT_INFO=$(acpi -b | awk -F', ' '{print $2}')
-    AC_INFO=$(acpi -a | awk -F': ' '{print $2}')
+    BATT_INFO=$(acpi -b 2>/dev/null | awk -F', ' '{print $2}')
+    AC_INFO=$(acpi -a 2>/dev/null | awk -F': ' '{print $2}')
 
     if [ $AC_INFO = "off-line" ]
     then
@@ -81,7 +81,7 @@ function get_battery_info()
             BCOLOR=$bldylw
         fi
     else
-        BCOLOR=$undblk
+        BCOLOR=$undgrn
     fi
 }
 
