@@ -60,6 +60,30 @@ function parse_git_branch {
     __git_ps1 | tr '()' '[]'
 }
 
+# from https://github.com/jegbjerg/battery-prompt.sh/blob/master/battery-prompt.sh
+# which seems to be taken from http://arighi.blogspot.com/2009/05/battery-life-in-bash-prompt.html
+function get_battery_info()
+{
+    BATT_INFO=$(acpi -b | awk -F', ' '{print $2}')
+    AC_INFO=$(acpi -a | awk -F': ' '{print $2}')
+
+    if [ $AC_INFO = "off-line" ]
+    then
+        BATT_PERC=${BATT_INFO:0:${#BATT_INFO}-1}
+
+        if [ $BATT_PERC -ge 75 ]
+        then
+            BCOLOR=$bldgrn
+        elif [ $BATT_PERC -le 25 ]
+        then
+            BCOLOR=$bldred
+        else
+            BCOLOR=$bldylw
+        fi
+    else
+        BCOLOR=$undblk
+    fi
+}
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -90,7 +114,7 @@ fi
 # Using a trick I got from http://superuser.com/questions/49092/how-to-format-the-path-in-a-zsh-prompt
 # to color the slashes in the working directory
 if [ "$color_prompt" = yes ]; then
-    PROMPT_COMMAND='usercolor=${txtred};PS1="$(pwd)";PS1="${PS1/$HOME/~}";PS1="${debian_chroot:+($debian_chroot)}\[$bldgrn\]\u@$(fgcolor $hostnamecolor)\h$txtrst:$bldblu${PS1//\//$txtred/$bldblu}$txtrst$bldred\$(parse_git_branch)\[$txtrst\] \[$undcyn\]\T \d\[$txtrst\]
+    PROMPT_COMMAND='usercolor=${txtred};PS1="$(pwd)";get_battery_info;PS1="${PS1/$HOME/~}";PS1="${debian_chroot:+($debian_chroot)}\[$bldgrn\]\u@$(fgcolor $hostnamecolor)\h$txtrst:$bldblu${PS1//\//$txtred/$bldblu}$txtrst$bldred\$(parse_git_branch)\[$txtrst\] \[$undcyn\]\T \d\[$txtrst\] ${BCOLOR}${BATT_PERC}%${txtrst}
 \$ "'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
