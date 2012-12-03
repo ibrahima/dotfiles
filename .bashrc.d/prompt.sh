@@ -67,7 +67,7 @@ function get_battery_info()
     BATT_INFO=$(acpi -b 2>/dev/null | awk -F', ' '{print $2}')
     AC_INFO=$(acpi -a 2>/dev/null | awk -F': ' '{print $2}')
 
-    if [ $AC_INFO = "off-line" ]
+    if [ "$AC_INFO" = "off-line" ]
     then
         BATT_PERC=${BATT_INFO:0:${#BATT_INFO}-1}
 
