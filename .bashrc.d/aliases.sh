@@ -38,3 +38,6 @@ alias greppkgs='dpkg --get-selections | grep'
 function targets(){
 	make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}'     
 }
+
+# I hope to God I don't have much occasion to use this alias
+alias grepcmake="find . -name CMakeLists.txt | xargs grep --color=always -C5"
