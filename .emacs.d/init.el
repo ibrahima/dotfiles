@@ -84,6 +84,10 @@
 
 (setq auto-save-file-name-transforms `((".*" "~/.emacs.d/saves" t)))
 
+;; Org mode
+(setq org-agenda-files '("~/SparkleShare/braindump"
+						 ))
+
 (global-ede-mode t)
 
 ; Semantic stuff
@@ -132,7 +136,7 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
- '(org-agenda-files (quote ("~/SparkleShare/braindump/braindump.org"))))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
