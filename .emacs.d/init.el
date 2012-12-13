@@ -15,12 +15,13 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
-(if (display-graphic-p)
-    (require 'color-theme)
-  (eval-after-load "color-theme"
-    '(progn
-       (color-theme-initialize)
-       (color-theme-subtle-hacker))))
+;; Color theme is not used in emacs 24
+;; (if (display-graphic-p)
+;;     (require 'color-theme)
+;;   (eval-after-load "color-theme"
+;;     '(progn
+;;        (color-theme-initialize)
+;;        (color-theme-subtle-hacker))))
 
 (setq indent-tabs-mode nil)
 (setq require-final-newline nil)
@@ -87,6 +88,8 @@
 ;; Org mode
 (setq org-agenda-files '("~/SparkleShare/braindump"
 						 ))
+(setq org-todo-keywords
+	  '((sequence "TODO" "WIP" "|" "DONE")))
 
 (global-ede-mode t)
 
