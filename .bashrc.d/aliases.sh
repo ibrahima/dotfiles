@@ -1,7 +1,8 @@
 alias ack='ack-grep'
 
 function make(){
-    /usr/bin/make "$@" -j $(nproc)
+    MAKEBIN=`which make`
+    time $MAKEBIN "$@" -j $(nproc)
     EXITCODE=$?
     QUIET=false
     OPTIND=1
