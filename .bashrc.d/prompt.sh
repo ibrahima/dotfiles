@@ -53,10 +53,37 @@ function resetcolor {
 # From http://serverfault.com/questions/221108/different-color-prompts-for-different-machines-when-using-terminal-ssh
 hostnamecolor=$(hostname | od | tr ' ' '\n' | awk '{total = total + $1}END{print (total % 256)}')
 
+# Use the builtin __git_ps1 function, just with brackets, and show dirty state
+export GIT_PS1_SHOWDIRTYSTATE=1
+
 function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \[\1\]/'
+    __git_ps1 | tr '()' '[]'
 }
 
+# from https://github.com/jegbjerg/battery-prompt.sh/blob/master/battery-prompt.sh
+# which seems to be taken from http://arighi.blogspot.com/2009/05/battery-life-in-bash-prompt.html
+function get_battery_info()
+{
+    BATT_INFO=$(acpi -b 2>/dev/null | awk -F', ' '{print $2}')
+    AC_INFO=$(acpi -a 2>/dev/null | awk -F': ' '{print $2}')
+
+    if [ "$AC_INFO" = "off-line" ]
+    then
+        BATT_PERC=${BATT_INFO:0:${#BATT_INFO}-1}
+
+        if [ $BATT_PERC -ge 75 ]
+        then
+            BCOLOR=$bldgrn
+        elif [ $BATT_PERC -le 25 ]
+        then
+            BCOLOR=$bldred
+        else
+            BCOLOR=$bldylw
+        fi
+    else
+        BCOLOR=$undgrn
+    fi
+}
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
@@ -84,10 +111,11 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Using a trick I got from http://superuser.com/questions/49092/how-to-format-the-path-in-a-zsh-prompt
+# to color the slashes in the working directory
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[$bldgrn\]\u@$(fgcolor $hostnamecolor)\h$(resetcolor)\[\e[00m\]:\[$bldblu\]\w\[\e[00m\]$bldred\$(parse_git_branch)\[$txtrst\] \[$undcyn\]\T \d\[$txtrst\]
-\$ "
-
+    PROMPT_COMMAND='usercolor=${txtred};PS1="$(pwd)";get_battery_info;PS1="${PS1/$HOME/~}";PS1="${debian_chroot:+($debian_chroot)}\[$bldgrn\]\u@$(fgcolor $hostnamecolor)\h$txtrst:$bldblu${PS1//\//$txtred/$bldblu}$txtrst$bldred\$(parse_git_branch)\[$txtrst\] \[$undcyn\]\T \d\[$txtrst\] ${BCOLOR}${BATT_INFO}${txtrst}
+\$ "'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi

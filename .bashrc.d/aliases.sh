@@ -1,7 +1,8 @@
 alias ack='ack-grep'
 
 function make(){
-    /usr/bin/make "$@" -j $(nproc)
+    MAKEBIN=`which make`
+    time $MAKEBIN "$@" -j $(nproc)
     EXITCODE=$?
     QUIET=false
     OPTIND=1
@@ -14,9 +15,11 @@ function make(){
     done
     if ! $QUIET; then
 	if [ $EXITCODE -eq 0 ]; then
-	    ogg123 -q /usr/share/sounds/freedesktop/stereo/complete.oga
+	    alert "Make succeeded"
+#	    ogg123 -q /usr/share/sounds/freedesktop/stereo/complete.oga
 	else
-	    ogg123 -q /usr/share/sounds/ubuntu/stereo/dialog-warning.ogg
+	    alert "Make failed"
+#	    ogg123 -q /usr/share/sounds/ubuntu/stereo/dialog-warning.ogg
 	fi
     fi
 }
@@ -28,7 +31,21 @@ function rebash(){
 alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
 
 alias emacs='emacsclient -a "" -t'
-
+alias e='emacsclient -a "" -t'
 export VISUAL='emacsclient -a "" -t'
 
 alias greppkgs='dpkg --get-selections | grep'
+
+function targets(){
+	make -qp | awk -F':' '/^[a-zA-Z0-9][^$#\/\t=]*:([^=]|$)/ {split($1,A,/ /);for(i in A)print A[i]}'     
+}
+
+# I hope to God I don't have much occasion to use this alias
+alias grepcmake="find . -name CMakeLists.txt | xargs grep --color=always -C5"
+
+# The fact that I type this often is kind of sad
+alias dusn="du -sk * | sort -n"
+
+# I have colorgcc scripts in ~/bin, this makes it so make and the like actually use them
+export CC=`which gcc`
+export CXX=`which g++`
