@@ -1,7 +1,8 @@
 alias ack='ack-grep'
 
 function make(){
-    /usr/bin/make "$@" -j $(nproc)
+    MAKEBIN=`which make`
+    time $MAKEBIN "$@" -j $(nproc)
     EXITCODE=$?
     QUIET=false
     OPTIND=1
@@ -29,10 +30,9 @@ function rebash(){
 
 alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
 
-alias emacs='emacsclient -a "" -c'
+alias emacs='emacsclient -a "" -t'
 
-export VISUAL='emacsclient -a "" -c'
-export EDITOR='emacsclient -a "" -t'
+export VISUAL='emacsclient -a "" -t'
 
 alias greppkgs='dpkg --get-selections | grep'
 
