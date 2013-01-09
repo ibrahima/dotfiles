@@ -22,6 +22,7 @@ function make(){
 #	    ogg123 -q /usr/share/sounds/ubuntu/stereo/dialog-warning.ogg
 	fi
     fi
+    return $EXITCODE
 }
 
 function rebash(){
