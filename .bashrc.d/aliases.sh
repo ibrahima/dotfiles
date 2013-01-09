@@ -44,3 +44,5 @@ function targets(){
 
 # I hope to God I don't have much occasion to use this alias
 alias grepcmake="find . -name CMakeLists.txt | xargs grep --color=always -C5"
+
+alias fullpath='readlink -f'
