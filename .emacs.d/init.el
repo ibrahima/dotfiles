@@ -24,6 +24,8 @@
 ;;        (color-theme-subtle-hacker))))
 
 (setq indent-tabs-mode nil)
+(setq-default 'indent-tabs-mode nil)
+
 (setq require-final-newline nil)
 
 (add-hook 'python-mode-hook '(lambda () 
