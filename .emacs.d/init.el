@@ -1,4 +1,5 @@
-(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
+(ignore-errors
+  (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
 
 (require 'package)
 (package-initialize)
@@ -15,6 +16,9 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+(ignore-errors
+  (require 'rosemacs)
+  (invoke-rosemacs))
 ;; Color theme is not used in emacs 24
 ;; (if (display-graphic-p)
 ;;     (require 'color-theme)
@@ -24,7 +28,7 @@
 ;;        (color-theme-subtle-hacker))))
 
 (setq indent-tabs-mode nil)
-(setq-default 'indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 (setq require-final-newline nil)
 
