@@ -138,6 +138,21 @@
 ; MobileOrg
 (setq org-mobile-directory "~/Dropbox/Org")
 
+; OpenRAVE include paths, can't believe I didn't know about this though it was right on the site
+(defun openrave-package-path ()
+  (save-excursion
+    (with-temp-buffer
+      (call-process "openrave-config" nil t nil "--cflags-only-I")
+      (goto-char (point-min))
+      (re-search-forward "^-I\\(.*\\)[ \\|$]")
+      (match-string 1))))
+
+(setq openrave-base-dir (openrave-package-path))
+(semantic-add-system-include openrave-base-dir 'c++-mode)
+(semantic-add-system-include openrave-base-dir 'c-mode)
+(add-to-list 'auto-mode-alist (cons openrave-base-dir 'c++-mode))
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat openrave-base-dir "/openrave/config.h"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
