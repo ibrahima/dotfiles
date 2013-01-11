@@ -16,6 +16,9 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+; Desktop mode saves your emacs session and restores it when you start emacs
+(desktop-save-mode 1)
+
 (ignore-errors
   (require 'rosemacs)
   (invoke-rosemacs))
@@ -167,4 +170,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
