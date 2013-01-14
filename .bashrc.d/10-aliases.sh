@@ -49,3 +49,4 @@ alias grepcmake="find . -name CMakeLists.txt | xargs grep --color=always -C5"
 alias fullpath='readlink -f'
 
 alias cats="source ~/catkin_ws/devel/setup.bash"
+alias move="source ~/moveit/devel/setup.bash"
