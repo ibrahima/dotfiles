@@ -111,8 +111,23 @@
 (ede-cpp-root-project "Bulletsim"
                 :name "Bulletsim"
                 :file "~/research/bulletsim/CMakeLists.txt"
-                :include-path '("/"
-                                "/src"
+                :include-path '("/src"
+                                "/src/sqp"
+                                "/src/moveit"
+                                "/src/roots"
+                                "/src/simulation"
+                               )
+                :system-include-path '("/opt/gurobi501/linux64/include")
+                :spp-table '(("isUnix" . "")
+                             ("BOOST_TEST_DYN_LINK" . "")))
+
+(ede-cpp-root-project "Trajopt"
+                :name "trajopt"
+                :file "~/research/trajopt/CMakeLists.txt"
+                :include-path '("/src/ipi"
+                                "/src/ipi/sco"
+                                "/src/utils"
+                                "/src/trajopt"
                                )
                 :system-include-path '("/opt/gurobi501/linux64/include")
                 :spp-table '(("isUnix" . "")
