@@ -1,1 +1,4 @@
 --pager=less -FRSX
+
+# Always show file path
+-H
