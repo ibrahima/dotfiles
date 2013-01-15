@@ -34,7 +34,7 @@ alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
 alias emacs='emacsclient -a "" -t'
 alias e='emacsclient -a "" -t'
 
-export VISUAL='emacsclient -a "" -c'
+export VISUAL='emacsclient -a "" -t'
 export EDITOR='emacsclient -a "" -t'
 
 alias greppkgs='dpkg --get-selections | grep'
