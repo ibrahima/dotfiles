@@ -138,6 +138,8 @@
 (global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
 (global-set-key (kbd "C-S-z") 'redo) ; 【Ctrl+Shift+z】
 
+(setq mouse-autoselect-window t)
+
 ; MobileOrg
 (setq org-mobile-directory "~/Dropbox/Org")
 
