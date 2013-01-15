@@ -24,6 +24,9 @@
 ;;        (color-theme-subtle-hacker))))
 
 (setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
+(setq tab-width 2)
+(setq-default tab-width 2)
 (setq require-final-newline nil)
 
 (add-hook 'python-mode-hook '(lambda () 
@@ -72,6 +75,14 @@
 (global-set-key "\C-cb" 'org-iswitchb)
 ;;; Compilation
 (global-set-key (kbd "<f5>") 'compile)
+
+
+;; Use my bash env in shells (such as for M-x compile)
+;; This slows down the launch a little but in my case I have an alias for make
+;; that automatically parallelizes builds, plus this is more reproducible
+;; [Commented out for now because it's slow, but I might want it later]
+; (setq shell-file-name "bash")
+; (setq shell-command-switch "-ic")
 
 ;; Beginning of the el4r block:
 ;; RCtool generated this block automatically. DO NOT MODIFY this block!
