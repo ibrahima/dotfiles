@@ -22,6 +22,7 @@ function make(){
 #	    ogg123 -q /usr/share/sounds/ubuntu/stereo/dialog-warning.ogg
 	fi
     fi
+    return $EXITCODE
 }
 
 function rebash(){
@@ -32,7 +33,9 @@ alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
 
 alias emacs='emacsclient -a "" -t'
 alias e='emacsclient -a "" -t'
-export VISUAL='emacsclient -a "" -t'
+
+export VISUAL='emacsclient -a "" -c'
+export EDITOR='emacsclient -a "" -t'
 
 alias greppkgs='dpkg --get-selections | grep'
 
@@ -43,9 +46,6 @@ function targets(){
 # I hope to God I don't have much occasion to use this alias
 alias grepcmake="find . -name CMakeLists.txt | xargs grep --color=always -C5"
 
-# The fact that I type this often is kind of sad
-alias dusn="du -sk * | sort -n"
+alias fullpath='readlink -f'
 
-# I have colorgcc scripts in ~/bin, this makes it so make and the like actually use them
-export CC=`which gcc`
-export CXX=`which g++`
+alias cats="source ~/catkin_ws/devel/setup.bash"

@@ -1,4 +1,5 @@
-(load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
+(ignore-errors
+  (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
 
 (require 'package)
 (package-initialize)
@@ -15,6 +16,12 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
+; Desktop mode saves your emacs session and restores it when you start emacs
+(desktop-save-mode 1)
+
+(ignore-errors
+  (require 'rosemacs)
+  (invoke-rosemacs))
 ;; Color theme is not used in emacs 24
 ;; (if (display-graphic-p)
 ;;     (require 'color-theme)
@@ -143,6 +150,21 @@
 ; MobileOrg
 (setq org-mobile-directory "~/Dropbox/Org")
 
+; OpenRAVE include paths, can't believe I didn't know about this though it was right on the site
+(defun openrave-package-path ()
+  (save-excursion
+    (with-temp-buffer
+      (call-process "openrave-config" nil t nil "--cflags-only-I")
+      (goto-char (point-min))
+      (re-search-forward "^-I\\(.*\\)[ \\|$]")
+      (match-string 1))))
+
+(setq openrave-base-dir (openrave-package-path))
+(semantic-add-system-include openrave-base-dir 'c++-mode)
+(semantic-add-system-include openrave-base-dir 'c-mode)
+(add-to-list 'auto-mode-alist (cons openrave-base-dir 'c++-mode))
+(add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat openrave-base-dir "/openrave/config.h"))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -157,4 +179,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
