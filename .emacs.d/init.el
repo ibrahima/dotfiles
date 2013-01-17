@@ -83,6 +83,7 @@
 ;;; Compilation
 (global-set-key (kbd "<f5>") 'compile)
 
+(global-set-key "\C-c,c" 'semantic-ia-fast-jump)
 
 ;; Use my bash env in shells (such as for M-x compile)
 ;; This slows down the launch a little but in my case I have an alias for make
