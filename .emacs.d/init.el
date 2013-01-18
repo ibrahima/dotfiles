@@ -198,3 +198,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+; Ace jump mode - jump to anything on the screen easily
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
