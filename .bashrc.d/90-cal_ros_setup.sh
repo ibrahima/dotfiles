@@ -57,3 +57,8 @@ eval $ROBOT_MODE
 export ROS_PACKAGE_PATH=~/ros:$ROS_PACKAGE_PATH
 
 alias rosenv='env|grep ROS'
+
+if [ -f ~/.ros/moveit ]; then
+    source ~/moveit/devel/setup.bash
+    echo "Using moveit overlay"
+fi
