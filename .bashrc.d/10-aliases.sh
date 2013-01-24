@@ -50,3 +50,10 @@ alias fullpath='readlink -f'
 
 alias cats="source ~/catkin_ws/devel/setup.bash"
 alias move="source ~/moveit/devel/setup.bash"
+
+function lcd() {
+    cd "$@"
+    l
+}
+
+alias cdl="lcd"
