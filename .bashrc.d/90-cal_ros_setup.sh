@@ -62,3 +62,21 @@ if [ -f ~/.ros/moveit ]; then
     source ~/moveit/devel/setup.bash
     echo "Using moveit overlay"
 fi
+
+function rosless {
+    local arg;
+    if [[ $1 = "--help" ]]; then
+        echo -e "usage: rossed [package] [file]\n\nEdit a file within a package.";
+        return 0;
+    fi;
+    _roscmd ${1} ${2};
+    if [[ -n ${arg} ]]; then
+        if [[ -z $PAGER ]]; then
+            less ${arg};
+        else
+            $PAGER ${arg};
+        fi;
+    fi
+}
+
+complete -F "_roscomplete_file" "rosless"
