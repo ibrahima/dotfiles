@@ -1,14 +1,8 @@
 (ignore-errors
   (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
 
-(require 'package)
-(package-initialize)
 
-(add-to-list 'package-archives 
-	     '("marmalade" . "http://marmalade-repo.org/packages/") t)
-
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(load "~/.emacs.d/my-packages.el")
 
 (require 'hippie-exp)
 
