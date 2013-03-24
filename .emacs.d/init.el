@@ -16,13 +16,6 @@
 (ignore-errors
   (require 'rosemacs)
   (invoke-rosemacs))
-;; Color theme is not used in emacs 24
-;; (if (display-graphic-p)
-;;     (require 'color-theme)
-;;   (eval-after-load "color-theme"
-;;     '(progn
-;;        (color-theme-initialize)
-;;        (color-theme-subtle-hacker))))
 
 (setq indent-tabs-mode nil)
 (setq-default indent-tabs-mode nil)
@@ -198,3 +191,5 @@
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 (load-theme 'deeper-blue)
+
+(load "~/github/quickopen/elisp/quickopen.el")
