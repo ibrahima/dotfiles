@@ -33,6 +33,7 @@
                       multi-eshell
                       gist
                       dired+
+                      sass-mode
                       )
   "A list of packages to ensure are installed at launch.")
 

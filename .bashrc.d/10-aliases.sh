@@ -57,3 +57,7 @@ function lcd() {
 }
 
 alias cdl="lcd"
+
+function easymail() {
+    uuencode "$1" "$1" | mail -s "$2" "$3"
+}
