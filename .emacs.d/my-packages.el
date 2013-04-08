@@ -34,6 +34,7 @@
                       gist
                       dired+
                       sass-mode
+                      edit-server ;; Lets you edit text fields in Chrome using emacs
                       )
   "A list of packages to ensure are installed at launch.")
 
