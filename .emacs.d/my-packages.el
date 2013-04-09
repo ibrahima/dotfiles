@@ -34,6 +34,7 @@
                       gist
                       dired+
                       sass-mode
+                      yaml-mode
                       )
   "A list of packages to ensure are installed at launch.")
 
