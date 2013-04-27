@@ -184,6 +184,7 @@
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(column-number-mode t)
  '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
+ '(safe-local-variable-values (quote ((setq ruby-indent-tabs-mode nil))))
  '(org-agenda-custom-commands (quote (("n" "Agenda and all TODO's" ((agenda "") (alltodo))) ("x" "Examgrader" alltodo "" ((org-agenda-files (quote ("~/SparkleShare/braindump/examgrader.org"))))))))
  '(safe-local-variable-values (quote ((setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
  '(show-paren-mode t))
@@ -246,3 +247,16 @@
 
 ;; (auto-indent-global-mode)
 
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+
+(setq
+ mu4e-maildir       "~/Maildir"   ;; top-level Maildir
+ mu4e-sent-folder   "/sent"       ;; folder for sent messages
+ mu4e-drafts-folder "/drafts"     ;; unfinished messages
+ mu4e-trash-folder  "/trash"      ;; trashed messages
+ mu4e-refile-folder "/archive")   ;; saved messages
+
+(setq
+ mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
+ mu4e-update-interval 300)             ;; update every 5 minutes

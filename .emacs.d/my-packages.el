@@ -34,6 +34,7 @@
                       gist
                       dired+
                       sass-mode
+                      yaml-mode
                       edit-server ;; Lets you edit text fields in
     ;; Chrome using emacs
                       smex
