@@ -1,5 +1,5 @@
-(ignore-errors
-  (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
+;; (ignore-errors
+;;   (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
 
 
 (load "~/.emacs.d/my-packages.el")
@@ -9,14 +9,26 @@
 (require 'ido)
 (ido-mode t)
 (ido-everywhere)
-(setq ido-enable-flex-matching t)
-
+; (setq ido-enable-flex-matching t)
+(flx-ido-mode t)
+; (setq ido-use-faces nil)
 ; Desktop mode saves your emacs session and restores it when you start emacs
 (desktop-save-mode 1)
+(projectile-global-mode)
+
+(setenv "PAGER" (executable-find "cat"))
 
 (ignore-errors
   (require 'rosemacs)
   (invoke-rosemacs))
+
+(smex-initialize) ; Can be omitted. This might cause a (minimal) delay
+                  ; when Smex is auto-initialized on its first run.
+
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 (setq indent-tabs-mode nil)
 (setq-default indent-tabs-mode nil)
@@ -71,7 +83,7 @@
 ;;; Compilation
 (global-set-key (kbd "<f5>") 'compile)
 
-(global-set-key "\C-c,c" 'semantic-ia-fast-jump)
+;; (global-set-key "\C-c,c" 'semantic-ia-fast-jump)
 
 ;; Use my bash env in shells (such as for M-x compile)
 ;; This slows down the launch a little but in my case I have an alias for make
@@ -99,49 +111,49 @@
 (setq org-todo-keywords
 	  '((sequence "TODO" "WIP" "|" "DONE")))
 
-(global-ede-mode t)
+;; (global-ede-mode t)
 
 ; Semantic stuff
-(semantic-load-enable-excessive-code-helpers)
-(require 'semantic-ia)
-(require 'semantic-gcc)
-(semantic-add-system-include "/usr/include" 'c++-mode)
+;; (semantic-load-enable-excessive-code-helpers)
+;; (require 'semantic-ia)
+;; (require 'semantic-gcc)
+;; (semantic-add-system-include "/usr/include" 'c++-mode)
 
-(ede-cpp-root-project "Bulletsim"
-                :name "Bulletsim"
-                :file "~/research/bulletsim/CMakeLists.txt"
-                :include-path '("/src"
-                                "/src/sqp"
-                                "/src/moveit"
-                                "/src/roots"
-                                "/src/simulation"
-                               )
-                :system-include-path '("/opt/gurobi501/linux64/include")
-                :spp-table '(("isUnix" . "")
-                             ("BOOST_TEST_DYN_LINK" . "")))
+;; (ede-cpp-root-project "Bulletsim"
+;;                 :name "Bulletsim"
+;;                 :file "~/research/bulletsim/CMakeLists.txt"
+;;                 :include-path '("/src"
+;;                                 "/src/sqp"
+;;                                 "/src/moveit"
+;;                                 "/src/roots"
+;;                                 "/src/simulation"
+;;                                )
+;;                 :system-include-path '("/opt/gurobi501/linux64/include")
+;;                 :spp-table '(("isUnix" . "")
+;;                              ("BOOST_TEST_DYN_LINK" . "")))
 
-(ede-cpp-root-project "Trajopt"
-                :name "trajopt"
-                :file "~/research/trajopt/CMakeLists.txt"
-                :include-path '("/src"
-                                "/src/ipi"
-                                "/src/ipi/sco"
-                                "/src/utils"
-                                "/src/trajopt"
-                               )
-                :system-include-path '("/opt/gurobi501/linux64/include")
-                :spp-table '(("isUnix" . "")
-                             ("BOOST_TEST_DYN_LINK" . "")))
+;; (ede-cpp-root-project "Trajopt"
+;;                 :name "trajopt"
+;;                 :file "~/research/trajopt/CMakeLists.txt"
+;;                 :include-path '("/src"
+;;                                 "/src/ipi"
+;;                                 "/src/ipi/sco"
+;;                                 "/src/utils"
+;;                                 "/src/trajopt"
+;;                                )
+;;                 :system-include-path '("/opt/gurobi501/linux64/include")
+;;                 :spp-table '(("isUnix" . "")
+;;                              ("BOOST_TEST_DYN_LINK" . "")))
 
 (global-unset-key (kbd "<mouse-2>"))
 
-(defun my-cedet-hook ()
-  (local-set-key [(control return)] 'semantic-ia-complete-symbol)
-  (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-  (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-  (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
-  (local-set-key (kbd "<mouse-2>") 'semantic-ia-fast-jump))
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
+;; (defun my-cedet-hook ()
+;;   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
+;;   (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
+;;   (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
+;;   (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
+;;   (local-set-key (kbd "<mouse-2>") 'semantic-ia-fast-jump))
+;; (add-hook 'c-mode-common-hook 'my-cedet-hook)
 
 (global-linum-mode 1)
 (show-paren-mode 1)
@@ -170,11 +182,11 @@
       (re-search-forward "^-I\\(.*\\)[ \\|$]")
       (match-string 1))))
 
-(setq openrave-base-dir (openrave-package-path))
-(semantic-add-system-include openrave-base-dir 'c++-mode)
-(semantic-add-system-include openrave-base-dir 'c-mode)
-(add-to-list 'auto-mode-alist (cons openrave-base-dir 'c++-mode))
-(add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat openrave-base-dir "/openrave/config.h"))
+;; (setq openrave-base-dir (openrave-package-path))
+;; (semantic-add-system-include openrave-base-dir 'c++-mode)
+;; (semantic-add-system-include openrave-base-dir 'c-mode)
+;; (add-to-list 'auto-mode-alist (cons openrave-base-dir 'c++-mode))
+;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat openrave-base-dir "/openrave/config.h"))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -184,9 +196,8 @@
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(column-number-mode t)
  '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
- '(safe-local-variable-values (quote ((setq ruby-indent-tabs-mode nil))))
  '(org-agenda-custom-commands (quote (("n" "Agenda and all TODO's" ((agenda "") (alltodo))) ("x" "Examgrader" alltodo "" ((org-agenda-files (quote ("~/SparkleShare/braindump/examgrader.org"))))))))
- '(safe-local-variable-values (quote ((setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
+ '(safe-local-variable-values (quote ((setq tab-width 2) (setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -204,6 +215,7 @@
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
+(global-set-key (kbd "S-C-<up>") 'enlarge-window)
 (global-set-key (kbd "S-C-<up>") 'enlarge-window)
 
 ;; (defun org-mobile-push-with-delay (secs)
@@ -260,3 +272,20 @@
 (setq
  mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
  mu4e-update-interval 300)             ;; update every 5 minutes
+
+;; (setq window-min-height 0)﻿
+(defun tinify-window ()
+  (interactive)
+  (adjust-window-trailing-edge nil -10000)
+  )
+(global-set-key (kbd "C-)") 'tinify-window)
+
+(add-hook 'ruby-mode-hook 'robe-mode)
+(add-hook 'ruby-mode-hook 'company-mode)
+(add-hook 'ruby-mode-hook
+          (lambda () (rvm-activate-corresponding-ruby)))
+
+(add-hook 'coffee-mode-hook
+          (lambda () (set-variable 'tab-width 2)))
+
+(add-hook 'coffee-mode-hook 'company-mode)

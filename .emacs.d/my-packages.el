@@ -2,7 +2,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
-
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 (package-initialize)
 
 (when (not package-archive-contents)
@@ -38,6 +38,8 @@
                       edit-server ;; Lets you edit text fields in
     ;; Chrome using emacs
                       smex
+                      projectile
+                      company
                       )
   "A list of packages to ensure are installed at launch.")
 
