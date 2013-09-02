@@ -33,7 +33,7 @@ alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
 
 alias emacs='emacsclient -a "" -t'
 alias e='emacsclient -a "" -t'
-
+alias ge='emacsclient -c -a "" &'
 export VISUAL='emacsclient -a "" -t'
 export EDITOR='emacsclient -a "" -t'
 
