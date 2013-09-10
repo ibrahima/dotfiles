@@ -273,6 +273,12 @@
  mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
  mu4e-update-interval 300)             ;; update every 5 minutes
 
+(defun json-format ()
+  (interactive)
+  (save-excursion
+    (shell-command-on-region (mark) (point) "python -m json.tool" (buffer-name) t)
+    )
+  )
 ;; (setq window-min-height 0)﻿
 (defun tinify-window ()
   (interactive)

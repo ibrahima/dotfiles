@@ -61,3 +61,5 @@ alias cdl="lcd"
 function easymail() {
     uuencode "$1" "$1" | mail -s "$2" "$3"
 }
+
+alias syslog="less /var/log/syslog"
