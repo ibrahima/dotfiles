@@ -33,7 +33,7 @@ alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
 
 alias emacs='emacsclient -a "" -t'
 alias e='emacsclient -a "" -t'
-
+alias ge='nohup emacsclient -c -a "" > ~/tmp/emacs.log &'
 export VISUAL='emacsclient -a "" -t'
 export EDITOR='emacsclient -a "" -t'
 
@@ -61,3 +61,5 @@ alias cdl="lcd"
 function easymail() {
     uuencode "$1" "$1" | mail -s "$2" "$3"
 }
+
+alias syslog="less /var/log/syslog"
