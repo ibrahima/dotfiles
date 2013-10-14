@@ -42,6 +42,7 @@
                       smex
                       projectile
                       company
+                      tabbar-ruler
                       )
   "A list of packages to ensure are installed at launch.")
 
