@@ -37,6 +37,8 @@
                       yaml-mode
                       edit-server ;; Lets you edit text fields in
     ;; Chrome using emacs
+                      flx
+                      flx-ido-mode
                       smex
                       projectile
                       company
