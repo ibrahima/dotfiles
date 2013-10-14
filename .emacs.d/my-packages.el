@@ -38,7 +38,7 @@
                       edit-server ;; Lets you edit text fields in
     ;; Chrome using emacs
                       flx
-                      flx-ido-mode
+                      flx-ido
                       smex
                       projectile
                       company
