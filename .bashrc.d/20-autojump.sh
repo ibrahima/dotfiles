@@ -1,1 +1,2 @@
-source /etc/profile.d/autojump.bash
+source /usr/share/autojump/autojump.bash
+
