@@ -84,7 +84,7 @@ function get_battery_info()
         else
             BCOLOR=$undgrn
         fi
-        BATT_STRING+="<${BCOLOR}${bat}${txtrst}>"
+        BATT_STRING+=" ${BCOLOR}${bat}${txtrst}"
     done
 }
 
@@ -117,7 +117,7 @@ fi
 # Using a trick I got from http://superuser.com/questions/49092/how-to-format-the-path-in-a-zsh-prompt
 # to color the slashes in the working directory
 if [ "$color_prompt" = yes ]; then
-    PROMPT_COMMAND='usercolor=${txtred};PS1="$(pwd)";get_battery_info;PS1="${PS1/$HOME/~}";PS1="${debian_chroot:+($debian_chroot)}\[$bldgrn\]\u@$(fgcolor $hostnamecolor)\h$txtrst:$bldblu${PS1//\//$txtred/$bldblu}$txtrst$bldred\$(parse_git_branch)\[$txtrst\] \[$undcyn\]\T \d\[$txtrst\] ${BATT_STRING}${txtrst}
+    PROMPT_COMMAND='usercolor=${txtred};PS1="$(pwd)";get_battery_info;PS1="${PS1/$HOME/~}";PS1="${debian_chroot:+($debian_chroot)}\[$bldgrn\]\u@$(fgcolor $hostnamecolor)\h$txtrst:$bldblu${PS1//\//$txtred/$bldblu}$txtrst$bldred\$(parse_git_branch)\[$txtrst\] \[$undcyn\]\T \d\[$txtrst\]${BATT_STRING}${txtrst}
 \$ "'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
