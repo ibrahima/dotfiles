@@ -43,6 +43,7 @@
                       projectile
                       company
                       tabbar-ruler
+                      smartparens
                       )
   "A list of packages to ensure are installed at launch.")
 
