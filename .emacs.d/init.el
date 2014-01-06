@@ -212,7 +212,6 @@
 
 (load-theme 'deeper-blue)
 
-(load "~/github/quickopen/elisp/quickopen.el")
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "S-C-<down>") 'shrink-window)
@@ -316,3 +315,11 @@ Also returns nil if pid is nil."
   "Don't allow dead emacsen to own the desktop file."
   (when (not (emacs-process-p ad-return-value))
     (setq ad-return-value nil)))
+
+(ignore-errors
+   (load-file "~/git/codesearch.el/codesearch.el"))
+
+(ignore-errors
+  (load "~/git/quickopen/elisp/quickopen.el"))
+
+(display-battery-mode)
