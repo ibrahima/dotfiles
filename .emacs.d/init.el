@@ -289,7 +289,7 @@
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'company-mode)
 (add-hook 'ruby-mode-hook
-          (lambda () (rvm-activate-corresponding-ruby)))
+          (lambda () (rbenv-use-corresponding)))
 
 (add-hook 'coffee-mode-hook
           (lambda () (set-variable 'tab-width 2)))
