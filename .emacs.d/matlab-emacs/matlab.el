@@ -648,7 +648,7 @@ If font lock is not loaded, lay in wait."
     (define-key km [(control h) (control m)] matlab-help-map)
     (define-key km [(control j)] 'matlab-linefeed)
     (define-key km "\M-\r" 'newline)
-    (define-key km [(meta \;)] 'matlab-comment)
+    ;; (define-key km [(meta \;)] 'matlab-comment)
     (define-key km [(meta q)] 'matlab-fill-paragraph)
     (define-key km [(meta a)] 'matlab-beginning-of-command)
     (define-key km [(meta e)] 'matlab-end-of-command)
