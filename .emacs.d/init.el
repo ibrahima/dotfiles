@@ -3,6 +3,7 @@
 
 
 (load "~/.emacs.d/my-packages.el")
+(load "my-functions.el")
 
 (require 'hippie-exp)
 
