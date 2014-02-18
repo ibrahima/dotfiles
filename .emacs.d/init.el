@@ -331,3 +331,15 @@ Also returns nil if pid is nil."
           (lambda ()
             (auto-complete-mode 1)
             ))
+
+(setq TeX-auto-save t)
+(setq TeX-save-query nil)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+(add-hook 'MATLAB-mode-hook
+          (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
