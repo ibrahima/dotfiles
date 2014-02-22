@@ -3,6 +3,7 @@
 
 
 (load "~/.emacs.d/my-packages.el")
+(load "my-functions.el")
 
 (require 'hippie-exp)
 
@@ -289,7 +290,7 @@
 (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'company-mode)
 (add-hook 'ruby-mode-hook
-          (lambda () (rvm-activate-corresponding-ruby)))
+          (lambda () (rbenv-use-corresponding)))
 
 (add-hook 'coffee-mode-hook
           (lambda () (set-variable 'tab-width 2)))
@@ -323,3 +324,23 @@ Also returns nil if pid is nil."
   (load "~/git/quickopen/elisp/quickopen.el"))
 
 (display-battery-mode)
+
+(add-to-list 'load-path "~/.emacs.d/matlab-emacs")
+(load-library "matlab-load")
+(matlab-cedet-setup)
+(add-hook 'matlab-mode
+          (lambda ()
+            (auto-complete-mode 1)
+            ))
+
+(setq TeX-auto-save t)
+(setq TeX-save-query nil)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+
+(add-hook 'LaTeX-mode-hook 'visual-line-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
+
+(add-hook 'MATLAB-mode-hook
+          (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
