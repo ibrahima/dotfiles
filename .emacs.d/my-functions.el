@@ -24,3 +24,47 @@
       )
     )
   )
+
+
+(defun import-figures-from-m-file (m-file)
+  (interactive
+   (list (ido-completing-read "M-file: "(directory-files "." nil ".*\.m$"))
+   ))
+  (let ((mbuf (find-file-noselect m-file))
+        (cbuf (current-buffer)))
+    (set-buffer mbuf)
+    (let ((mcontents (buffer-string)))
+      (set-buffer cbuf)
+      (setq figurecount (loop with start = 0
+            for count from 0
+            while (string-match "savefig(\\([[:alnum:]]+\\),[[:space:]]*\\([[:digit:]]+\\))" mcontents start)
+            do
+            (if (= (mod count 2) 0)
+                (insert (format "
+\\begin{figure}[!ht]
+  \\begin{minipage}[b]{0.5\\linewidth}
+    \\centering
+    \\includegraphics[width=\\linewidth]{fig%s}
+    \\caption{}
+    \\label{fig:1}
+  \\end{minipage}
+  \\hspace{0.5cm}
+" (match-string 2 mcontents)))
+              (insert (format "
+  \\begin{minipage}[b]{0.5\\linewidth}
+    \\centering
+    \\includegraphics[width=\\linewidth]{fig%s}
+    \\caption{}
+    \\label{fig:2}
+  \\end{minipage}
+\\end{figure}
+" (match-string 2 mcontents) ))
+                )
+            (setq start (match-end 0))
+            finally return count) )
+      (if (= (mod figurecount 2) 1)
+          (insert "\\end{figure}")
+          )
+      )
+    )
+  )
