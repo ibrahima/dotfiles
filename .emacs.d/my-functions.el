@@ -13,7 +13,7 @@
 
     (insert 
      (format "savefig(gcf, %d);\n" figcount))
-    (save-excursion 
+    (save-excursion
       (loop with start = (window-point)
             for count from (+ 1 figcount)
             while (re-search-forward "savefig(\\([[:alnum:]]+\\),[[:space:]]*\\([[:digit:]]+\\))" nil t)
@@ -67,4 +67,25 @@
           )
       )
     )
+  )
+
+(defvar debug-func-history nil
+  "History list for the insert-debug-func command")
+(setq debug-func-history (list "printk();"))
+
+(defun insert-debug-func (debug-string)
+  (interactive (list
+                (read-string "Code to insert (default: printk();): "
+                             (car debug-func-history) debug-func-history "printk();")))
+  (save-excursion
+    (loop with start = (window-point)
+          for count from 0
+          while (re-search-forward "^{$" nil t)
+          do
+          (setq start (match-end 0))
+          (newline-and-indent)
+          (insert (format "%s\n" debug-string))
+          finally return count)
+    )
+
   )
