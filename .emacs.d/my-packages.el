@@ -44,6 +44,7 @@
                       company
                       tabbar-ruler
                       smartparens
+                      lua-mode
                       )
   "A list of packages to ensure are installed at launch.")
 

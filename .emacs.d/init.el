@@ -194,6 +194,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(android-mode-sdk-dir "~/android/sdk")
  '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(column-number-mode t)
  '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
@@ -376,6 +377,8 @@ Also returns nil if pid is nil."
 
 (display-battery-mode)
 
+(setq c-default-style "linux"
+      c-basic-offset 4)
 (add-to-list 'load-path "~/.emacs.d/matlab-emacs")
 (load-library "matlab-load")
 (matlab-cedet-setup)
@@ -395,3 +398,8 @@ Also returns nil if pid is nil."
 
 (add-hook 'MATLAB-mode-hook
           (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
