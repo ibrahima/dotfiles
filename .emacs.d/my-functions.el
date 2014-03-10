@@ -46,19 +46,18 @@
     \\centering
     \\includegraphics[width=\\linewidth]{fig%s}
     \\caption{}
-    \\label{fig:1}
+    \\label{fig:%s}
   \\end{minipage}
-  \\hspace{0.5cm}
-" (match-string 2 mcontents)))
+  \\hspace{0.5cm}" (match-string 2 mcontents) (match-string 2 mcontents)))
               (insert (format "
   \\begin{minipage}[b]{0.5\\linewidth}
     \\centering
     \\includegraphics[width=\\linewidth]{fig%s}
     \\caption{}
-    \\label{fig:2}
+    \\label{fig:%s}
   \\end{minipage}
 \\end{figure}
-" (match-string 2 mcontents) ))
+" (match-string 2 mcontents) (match-string 2 mcontents)))
                 )
             (setq start (match-end 0))
             finally return count) )

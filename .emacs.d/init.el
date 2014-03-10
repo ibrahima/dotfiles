@@ -3,7 +3,7 @@
 
 
 (load "~/.emacs.d/my-packages.el")
-(load "my-functions.el")
+(load "~/.emacs.d/my-functions.el")
 
 (require 'hippie-exp)
 
@@ -198,8 +198,13 @@
  '(column-number-mode t)
  '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
  '(flymake-coffee-coffeelint-configuration-file "/home/ibrahim/.coffeelint.json")
+ '(matlab-completion-technique (quote increment))
+ '(matlab-functions-have-end t)
+ '(matlab-indent-function-body t)
+ '(matlab-mode-install-path (quote (/home/ibrahim/git/matlab-scripts/)))
  '(org-agenda-custom-commands (quote (("n" "Agenda and all TODO's" ((agenda "") (alltodo))) ("x" "Examgrader" alltodo "" ((org-agenda-files (quote ("~/SparkleShare/braindump/examgrader.org"))))))))
  '(safe-local-variable-values (quote ((setq tab-width 2) (setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
+ '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -262,13 +267,59 @@
 
 (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
 (require 'mu4e)
+(require 'smtpmail)
 
 (setq
  mu4e-maildir       "~/Maildir"   ;; top-level Maildir
- mu4e-sent-folder   "/sent"       ;; folder for sent messages
- mu4e-drafts-folder "/drafts"     ;; unfinished messages
- mu4e-trash-folder  "/trash"      ;; trashed messages
- mu4e-refile-folder "/archive")   ;; saved messages
+ mu4e-sent-folder   "/ibrahim.awwal@gmail.com/sent"       ;; folder for sent messages
+ mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts"     ;; unfinished messages
+ mu4e-trash-folder  "/ibrahim.awwal@gmail.com/trash"      ;; trashed messages
+ mu4e-refile-folder "/ibrahim.awwal@gmail.com/archive"    ;; saved messages
+ user-mail-address "ibrahim.awwal@gmail.com"
+ smtpmail-default-smtp-server "smtp.gmail.com"
+ smtpmail-local-domain "gmail.com"
+ smtpmail-smtp-server "smtp.gmail.com"
+ smtpmail-stream-type 'starttls
+ smtpmail-smtp-service 587
+)
+
+(defvar my-mu4e-account-alist
+  '(("ibrahim.awwal@gmail.com"
+     (mu4e-sent-folder "/ibrahim.awwal@gmail.com/sent")
+     (mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts")
+     (user-mail-address "ibrahim.awwal@gmail.com")
+     (smtpmail-default-smtp-server "smtp.gmail.com")
+     (smtpmail-local-domain "gmail.com")
+     (smtpmail-smtp-server "smtp.gmail.com")
+     (smtpmail-smtp-service 587))
+    ("iawwal@eng.ucsd.edu"
+     (mu4e-sent-folder "/iawwal@eng.ucsd.edu/sent")
+     (mu4e-drafts-folder "/iawwal@eng.ucsd.edu/drafts")
+     (user-mail-address "iawwal@eng.ucsd.edu")
+     (smtpmail-default-smtp-server "smtp.gmail.com")
+     (smtpmail-local-domain "eng.ucsd.edu")
+     (smtpmail-smtp-server "smtp.gmail.com")
+     (smtpmail-smtp-service 587))))
+
+(defun my-mu4e-set-account ()
+  "Set the account for composing a message."
+  (let* ((account
+          (if mu4e-compose-parent-message
+              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                (string-match "/\\(.*?\\)/" maildir)
+                (match-string 1 maildir))
+            (completing-read (format "Compose with account: (%s) "
+                                     (mapconcat #'(lambda (var) (car var)) my-mu4e-account-alist "/"))
+                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                             nil t nil nil (caar my-mu4e-account-alist))))
+         (account-vars (cdr (assoc account my-mu4e-account-alist))))
+    (if account-vars
+        (mapc #'(lambda (var)
+                  (set (car var) (cadr var)))
+              account-vars)
+      (error "No email account found"))))
+
+(add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
 (setq
  mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
