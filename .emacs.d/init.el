@@ -403,3 +403,13 @@ Also returns nil if pid is nil."
           (lambda ()
             (font-lock-add-keywords nil
                                     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+
+(global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
+(global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
+
+(global-set-key (kbd "C-(") 'sp-backward-barf-sexp)
+(global-set-key (kbd "C-)") 'sp-forward-barf-sexp)
+
+; Persist org mode clocking history over sessions
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
