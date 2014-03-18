@@ -88,3 +88,18 @@
     )
 
   )
+
+
+(defun org-log-current-defun ()
+  (save-excursion
+    (org-back-to-heading)
+    (if (looking-at org-complex-heading-regexp)
+        (match-string 4))))
+
+(defun org-store-current-task ()
+  (write-region (org-log-current-defun) nil "~/.current-task" nil)
+  )
+
+
+(add-hook 'org-clock-in-hook
+          'org-store-current-task)
