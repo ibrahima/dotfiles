@@ -37,29 +37,44 @@
       (set-buffer cbuf)
       (setq figurecount (loop with start = 0
             for count from 0
+            ;; TODO: This stuff could just use save-excursion rather than string-match
             while (string-match "savefig(\\([[:alnum:]]+\\),[[:space:]]*\\([[:digit:]]+\\))" mcontents start)
             do
-            (if (= (mod count 2) 0)
-                (insert (format "
+            (setq start (match-end 0))
+            (let ((fignum (match-string 2 mcontents))
+                  (savefig-char (match-beginning 0))
+                  )
+              (save-excursion
+                (save-excursion
+                  (set-buffer mbuf)
+                  (goto-char (+ 1 savefig-char))
+                  (re-search-backward (rx "'" (group-n 1 (+ printing)) "'"))
+                  (setq titlestring (match-string 1) )
+                  )
+                )
+              (if (= (mod count 2) 0)
+                  (insert (format "
 \\begin{figure}[!ht]
   \\begin{minipage}[b]{0.5\\linewidth}
     \\centering
     \\includegraphics[width=\\linewidth]{fig%s}
-    \\caption{}
+    \\caption{%s}
     \\label{fig:%s}
   \\end{minipage}
-  \\hspace{0.5cm}" (match-string 2 mcontents) (match-string 2 mcontents)))
+  \\hspace{0.5cm}
+" fignum titlestring fignum))
               (insert (format "
   \\begin{minipage}[b]{0.5\\linewidth}
     \\centering
     \\includegraphics[width=\\linewidth]{fig%s}
-    \\caption{}
+    \\caption{%s}
     \\label{fig:%s}
   \\end{minipage}
 \\end{figure}
-" (match-string 2 mcontents) (match-string 2 mcontents)))
+" fignum titlestring fignum))
                 )
-            (setq start (match-end 0))
+              )
+
             finally return count) )
       (if (= (mod figurecount 2) 1)
           (insert "\\end{figure}")
