@@ -866,6 +866,8 @@ Argument LIMIT is the maximum distance to search."
 				 "catch" "tic" "toc"
 				 ;; MCOS keywords
 				 "classdef" "properties" "methods" "enumeration"
+                 ;; CVX keywords
+                 "cvx_begin" "cvx_end"
 				 )
   "List of keywords for MATLAB used in highlighting.
 Customizing this variable is only useful if `regexp-opt' is available."
@@ -1424,18 +1426,18 @@ This variable should be set before loading matlab.el"
 
 (defconst matlab-block-beg-pre-if
   (if matlab-block-indent-tic-toc-flag
-      (concat "function\\|parfor\\|spmd\\|for\\|while\\|if\\|switch\\|try\\|tic"
+      (concat "function\\|parfor\\|spmd\\|for\\|while\\|if\\|switch\\|try\\|cvx_begin\\|tic"
 	      matlab-mcos-regexp)
-    (concat "function\\|parfor\\|spmd\\|for\\|while\\|if\\|switch\\|try"
+    (concat "function\\|parfor\\|spmd\\|for\\|while\\|if\\|switch\\|try\\|cvx_begin"
 	    matlab-mcos-regexp))
   "Keywords which mark the beginning of an indented block.
 Includes function.")
 
 (defconst matlab-block-beg-pre-no-if
   (if matlab-block-indent-tic-toc-flag
-      (concat "parfor\\|for\\|spmd\\|while\\|if\\|switch\\|try\\|tic"
+      (concat "parfor\\|for\\|spmd\\|while\\|if\\|switch\\|try\\|cvx_begin\\|tic"
 	      matlab-mcos-regexp)
-    (concat "parfor\\|for\\|spmd\\|while\\|if\\|switch\\|try"
+    (concat "parfor\\|for\\|spmd\\|while\\|if\\|switch\\|try\\|cvx_begin"
 	    matlab-mcos-regexp))
   "Keywords which mark the beginning of an indented block.
 Excludes function.")
@@ -1452,14 +1454,14 @@ Excludes function.")
 
 (defconst matlab-block-end-pre-if
   (if matlab-block-indent-tic-toc-flag
-      "end\\(function\\)?\\|function\\|\\(\\sw+\\s-*\\((.*)\\)?\\s-*=\\s-*\\)?toc"
-    "end\\(function\\)?\\|function")
+      "cvx_end\\|end\\(function\\)?\\|function\\|\\(\\sw+\\s-*\\((.*)\\)?\\s-*=\\s-*\\)?toc"
+    "cvx_end\\|end\\(function\\)?\\|function")
   "Partial regular expression to recognize MATLAB block-end keywords.")
 
 (defconst matlab-block-end-pre-no-if
   (if matlab-block-indent-tic-toc-flag
-      "end\\|\\(\\sw+\\s-*\\((.*)\\)?\\s-*=\\s-*\\)?toc"
-    "end")
+      "cvx_end\\|end\\|\\(\\sw+\\s-*\\((.*)\\)?\\s-*=\\s-*\\)?toc"
+    "cvx_end\\|end")
   "Partial regular expression to recognize MATLAB block-end keywords.")
 
 (defun matlab-block-end-pre ()
