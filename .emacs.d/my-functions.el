@@ -58,16 +58,15 @@
   \\begin{minipage}[b]{0.5\\linewidth}
     \\centering
     \\includegraphics[width=\\linewidth]{fig%s}
-    \\caption{%s}
+    \\caption{$%s$}
     \\label{fig:%s}
   \\end{minipage}
-  \\hspace{0.5cm}
-" fignum titlestring fignum))
+  \\hspace{0.5cm}" fignum titlestring fignum))
               (insert (format "
   \\begin{minipage}[b]{0.5\\linewidth}
     \\centering
     \\includegraphics[width=\\linewidth]{fig%s}
-    \\caption{%s}
+    \\caption{$%s$}
     \\label{fig:%s}
   \\end{minipage}
 \\end{figure}
