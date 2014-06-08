@@ -400,6 +400,11 @@ Also returns nil if pid is nil."
 (add-hook 'MATLAB-mode-hook
           (lambda () (local-set-key (kbd "C-0") #'run-latexmk)))
 
+(add-hook 'MATLAB-mode-hook
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+
 (add-hook 'prog-mode-hook
           (lambda ()
             (font-lock-add-keywords nil
