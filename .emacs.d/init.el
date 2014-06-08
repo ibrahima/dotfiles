@@ -421,3 +421,62 @@ Also returns nil if pid is nil."
 ; Persist org mode clocking history over sessions
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
+
+(require 'visual-regexp)
+(require 'visual-regexp-steroids)
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
+;; if you use multiple-cursors, this is for you:
+(define-key global-map (kbd "C-c m") 'vr/mc-mark)
+
+(setq explicit-shell-file-name "bash")
+(setq explicit-bash-args '("-c" "export EMACS=; stty echo; bash"))
+(setq comint-process-echoes t)
+
+(add-hook 'rlc-no-readline-hook (lambda () (company-mode -1)))
+
+(defun shell-mode-keys ()
+  "Modify keymaps used by `shell-mode'."
+  (local-set-key "\t" 'company-complete-common)
+  (local-set-key (kbd "TAB") 'company-complete-common)
+  (local-set-key (kbd "[TAB]") 'company-complete-common)
+  (push 'company-readline company-backends)
+  )
+
+
+(add-hook 'comint-mode-hook 'shell-mode-keys)
+(put 'erase-buffer 'disabled nil)
+
+;; Lets you type commands like in vim, without holding ctrl
+(require 'god-mode)
+(global-set-key (kbd "<escape>") 'god-local-mode)
+(define-key god-local-mode-map (kbd "i") 'god-local-mode)
+(global-set-key (kbd "C-x C-1") 'delete-other-windows)
+(global-set-key (kbd "C-x C-2") 'split-window-below)
+(global-set-key (kbd "C-x C-3") 'split-window-right)
+(global-set-key (kbd "C-x C-0") 'delete-window)
+
+(defun my-update-cursor ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only)
+                        'box
+                      'bar)))
+
+(add-hook 'god-mode-enabled-hook 'my-update-cursor)
+(add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+(require 'wc-mode)
+
+;; SOURCE: `http://wenshanren.org/?p=298'
+(defun edit-current-file-as-root ()
+  "Edit the file that is associated with the current buffer as root"
+  (interactive)
+  (if (buffer-file-name)
+      (progn
+        (setq file (concat "/sudo:root@localhost:" (buffer-file-name)))
+        (find-file file))
+    (message "Current buffer does not have an associated file.")))
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
