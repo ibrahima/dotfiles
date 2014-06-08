@@ -350,6 +350,8 @@
 
 (add-hook 'coffee-mode-hook 'company-mode)
 (add-hook 'coffee-mode-hook 'flymake-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+;; (global-set-key "\t" 'company-complete-common)
 
 (smartparens-global-mode t)
 
