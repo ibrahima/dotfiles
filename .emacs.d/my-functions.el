@@ -133,3 +133,10 @@
         (message "File '%s' successfully removed" filename)))))
 
 (global-set-key (kbd "C-c k") 'delete-this-buffer-and-file)
+
+(defun httpd-show-file ()
+  "Removes file connected to current buffer and kills buffer."
+  (interactive)
+  (httpd-serve-directory (file-name-directory buffer-file-name)) ;; Serve current buffer
+  (browse-url (concat "http://localhost:8080/" (file-name-nondirectory buffer-file-name)))
+)
