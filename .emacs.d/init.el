@@ -480,3 +480,21 @@ Also returns nil if pid is nil."
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+(setq-default show-trailing-whitespace t)
+
+;; Auto revert log files
+(add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
+
+(eval-after-load 'tramp
+  '(vagrant-tramp-enable))
+
+(require 'ein)
+(require 'smartparens)
+(require 'smartparens-html)
+(setq nxml-slash-auto-complete-flag t)
+
+(add-hook 'js2-mode-hook 'skewer-mode)
+(add-hook 'css-mode-hook 'skewer-css-mode)
+(add-hook 'html-mode-hook 'skewer-html-mode)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
