@@ -140,3 +140,10 @@
   (httpd-serve-directory (file-name-directory buffer-file-name)) ;; Serve current buffer
   (browse-url (concat "http://localhost:8080/" (file-name-nondirectory buffer-file-name)))
 )
+
+(defvar projectile-custom-root nil
+  "Defines a custom Projectile project root. This is intended to
+  be used as a file local variable.")
+(defun projectile-root-file-local (dir)
+  projectile-custom-root
+  )
