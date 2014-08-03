@@ -205,7 +205,8 @@
  '(matlab-keyword-list (quote ("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end")))
  '(matlab-mode-install-path (quote (/home/ibrahim/git/matlab-scripts/)))
  '(org-agenda-custom-commands (quote (("n" "Agenda and all TODO's" ((agenda "") (alltodo))) ("x" "Examgrader" alltodo "" ((org-agenda-files (quote ("~/SparkleShare/braindump/examgrader.org"))))))))
- '(safe-local-variable-values (quote ((setq tab-width 2) (setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
+ '(projectile-project-root-files-functions (quote (projectile-root-file-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring)))
+ '(safe-local-variable-values (quote ((projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/") (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/.git") (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints") (projectile-custom-root quote /home/ibrahim/git/webwork/Webwork_AdaptiveHints) (projectile-custom-root . /home/ibrahim/git/webwork/Webwork_AdaptiveHints) (projectile-custom-root . ~/git/webwork/Webwork_AdaptiveHints) (setq tab-width 2) (setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
  '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t))
 (custom-set-faces
