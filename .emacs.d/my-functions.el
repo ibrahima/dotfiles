@@ -118,6 +118,9 @@
 (add-hook 'org-clock-in-hook
           'org-store-current-task)
 
+(add-hook 'org-clock-out-hook
+          'org-store-current-task)
+
 ;; http://tuxicity.se/emacs/elisp/2010/11/16/delete-file-and-buffer-in-emacs.html
 (defun delete-this-buffer-and-file ()
   "Removes file connected to current buffer and kills buffer."

@@ -443,7 +443,7 @@ Also returns nil if pid is nil."
   (push 'company-readline company-backends)
   )
 
-
+(add-hook 'term-mode-hook (lambda () (setq term-buffer-maximum-size 8192) ))
 (add-hook 'comint-mode-hook 'shell-mode-keys)
 (put 'erase-buffer 'disabled nil)
 
