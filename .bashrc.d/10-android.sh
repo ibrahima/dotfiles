@@ -14,6 +14,25 @@ function runvnc() {
     runactivity org.onaips.vnc
 }
 
+function adb_nexus5(){
+    export ANDROID_SERIAL=039df0ef437cc1ab
+}
+
+function adb_mem(){
+    export ANDROID_SERIAL=70fe60d8
+}
+
+function adb_mdp(){
+    export ANDROID_SERIAL=b176271d
+}
+
+function adb_8660(){
+    export ANDROID_SERIAL=226cf816
+}
+function make_381(){
+    export PATH=/usr/local/make-3.81/bin:$PATH
+}
+
 alias adb_logfps='adb logcat -v time CALCFPS:D *:S'
 
 function adb_browse_to(){
