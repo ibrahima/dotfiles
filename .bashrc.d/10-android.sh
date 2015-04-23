@@ -15,3 +15,7 @@ function runvnc() {
 }
 
 alias adb_logfps='adb logcat -v time CALCFPS:D *:S'
+
+function adb_browse_to(){
+    adb shell am start -a android.intent.action.VIEW -d "$1"
+}
