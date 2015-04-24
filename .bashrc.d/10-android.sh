@@ -38,3 +38,16 @@ alias adb_logfps='adb logcat -v time CALCFPS:D *:S'
 function adb_browse_to(){
     adb shell am start -a android.intent.action.VIEW -d "$1"
 }
+
+function adb_tap_urlbar(){
+    adb shell input tap 100 50
+}
+function goto_bbench(){
+    adb shell input keyevent 67
+    adb shell input text "file:///sdcard/bbench/index.html"
+    adb shell input keyevent 66
+}
+
+function bbench_start(){
+    adb shell input tap 15 420
+}
