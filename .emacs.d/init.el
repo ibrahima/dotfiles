@@ -5,9 +5,70 @@
 ;; (ignore-errors
 ;;   (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(android-mode-sdk-dir "~/android/sdk")
+ '(ansi-color-names-vector
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(column-number-mode t)
+ '(custom-safe-themes
+   (quote
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
+ '(flymake-coffee-coffeelint-configuration-file "/home/ibrahim/.coffeelint.json")
+ '(matlab-completion-technique (quote increment))
+ '(matlab-functions-have-end t)
+ '(matlab-indent-function-body t)
+ '(matlab-keyword-list
+   (quote
+    ("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end")))
+ '(matlab-mode-install-path (quote (/home/ibrahim/git/matlab-scripts/)))
+ '(org-agenda-custom-commands
+   (quote
+    (("n" "Agenda and all TODO's"
+      ((agenda "")
+       (alltodo)))
+     ("x" "Examgrader" alltodo ""
+      ((org-agenda-files
+        (quote
+         ("~/SparkleShare/braindump/examgrader.org"))))))))
+ '(projectile-project-root-files-functions
+   (quote
+    (projectile-root-file-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring)))
+ '(safe-local-variable-values
+   (quote
+    ((projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/")
+     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/.git")
+     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints")
+     (projectile-custom-root quote /home/ibrahim/git/webwork/Webwork_AdaptiveHints)
+     (projectile-custom-root . /home/ibrahim/git/webwork/Webwork_AdaptiveHints)
+     (projectile-custom-root . ~/git/webwork/Webwork_AdaptiveHints)
+     (setq tab-width 2)
+     (setq ruby-indent-tabs-mode nil)
+     (ruby-compilation-executable . "ruby")
+     (ruby-compilation-executable . "ruby1.8")
+     (ruby-compilation-executable . "ruby1.9")
+     (ruby-compilation-executable . "rbx")
+     (ruby-compilation-executable . "jruby")
+     (whitespace-line-column . 80)
+     (lexical-binding . t))))
+ '(send-mail-function (quote smtpmail-send-it))
+ '(show-paren-mode t)
+ '(use-package-always-ensure t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+
+(load-theme 'deeper-blue)
 
 (load "~/.emacs.d/my-packages.el")
 (load "~/.emacs.d/my-functions.el")
+(load "~/.emacs.d/my-tokens.el")
 
 (require 'hippie-exp)
 
@@ -41,7 +102,7 @@
 (setq-default tab-width 2)
 (setq require-final-newline nil)
 
-(add-hook 'python-mode-hook '(lambda () 
+(add-hook 'python-mode-hook '(lambda ()
  (setq python-indent 4)))
 
 (setq default-tab-width 4)
@@ -56,8 +117,8 @@
 (require 'tabbar)
 (tabbar-mode)
 
-(require 'uniquify) 
-(setq 
+(require 'uniquify)
+(setq
   uniquify-buffer-name-style 'post-forward
   uniquify-separator ":")
 
@@ -72,7 +133,7 @@
   (find-file "~/.emacs.d/init.el"))
 
 (add-hook 'c-mode-common-hook
-  (lambda() 
+  (lambda()
     (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 (windmove-default-keybindings 'meta)
@@ -112,9 +173,9 @@
 ;; Org mode
 (setq org-directory "~/SparkleShare/braindump/")
 (setq org-agenda-files '("~/SparkleShare/braindump"
-						 ))
+             ))
 (setq org-todo-keywords
-	  '((sequence "TODO" "WIP" "|" "DONE")))
+    '((sequence "TODO" "WIP" "|" "DONE")))
 
 ;; (global-ede-mode t)
 
@@ -194,37 +255,9 @@
 ;; (add-to-list 'auto-mode-alist (cons openrave-base-dir 'c++-mode))
 ;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat openrave-base-dir "/openrave/config.h"))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(android-mode-sdk-dir "~/android/sdk")
- '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(column-number-mode t)
- '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
- '(flymake-coffee-coffeelint-configuration-file "/home/ibrahim/.coffeelint.json")
- '(matlab-completion-technique (quote increment))
- '(matlab-functions-have-end t)
- '(matlab-indent-function-body t)
- '(matlab-keyword-list (quote ("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end")))
- '(matlab-mode-install-path (quote (/home/ibrahim/git/matlab-scripts/)))
- '(org-agenda-custom-commands (quote (("n" "Agenda and all TODO's" ((agenda "") (alltodo))) ("x" "Examgrader" alltodo "" ((org-agenda-files (quote ("~/SparkleShare/braindump/examgrader.org"))))))))
- '(projectile-project-root-files-functions (quote (projectile-root-file-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring)))
- '(safe-local-variable-values (quote ((projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/") (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/.git") (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints") (projectile-custom-root quote /home/ibrahim/git/webwork/Webwork_AdaptiveHints) (projectile-custom-root . /home/ibrahim/git/webwork/Webwork_AdaptiveHints) (projectile-custom-root . ~/git/webwork/Webwork_AdaptiveHints) (setq tab-width 2) (setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
- '(send-mail-function (quote smtpmail-send-it))
- '(show-paren-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
 
 ; Ace jump mode - jump to anything on the screen easily
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-
-(load-theme 'deeper-blue)
 
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
@@ -454,23 +487,11 @@ Also returns nil if pid is nil."
 (put 'erase-buffer 'disabled nil)
 
 ;; Lets you type commands like in vim, without holding ctrl
-(require 'god-mode)
-(global-set-key (kbd "<escape>") 'god-local-mode)
-(define-key god-local-mode-map (kbd "i") 'god-local-mode)
+;; (require 'god-mode)
 (global-set-key (kbd "C-x C-1") 'delete-other-windows)
 (global-set-key (kbd "C-x C-2") 'split-window-below)
 (global-set-key (kbd "C-x C-3") 'split-window-right)
 (global-set-key (kbd "C-x C-0") 'delete-window)
-
-(defun my-update-cursor ()
-  (setq cursor-type (if (or god-local-mode buffer-read-only)
-                        'box
-                      'bar)))
-
-(add-hook 'god-mode-enabled-hook 'my-update-cursor)
-(add-hook 'god-mode-disabled-hook 'my-update-cursor)
-
-(require 'wc-mode)
 
 ;; SOURCE: `http://wenshanren.org/?p=298'
 (defun edit-current-file-as-root ()
@@ -482,28 +503,16 @@ Also returns nil if pid is nil."
         (find-file file))
     (message "Current buffer does not have an associated file.")))
 
-(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-
 (setq-default show-trailing-whitespace t)
 
 ;; Auto revert log files
 (add-to-list 'auto-mode-alist '("\\.log\\'" . auto-revert-mode))
-
-(eval-after-load 'tramp
-  '(vagrant-tramp-enable))
 
 (require 'ein)
 (require 'smartparens)
 (require 'smartparens-html)
 (setq nxml-slash-auto-complete-flag t)
 
-(add-hook 'js2-mode-hook 'skewer-mode)
-(add-hook 'css-mode-hook 'skewer-css-mode)
-(add-hook 'html-mode-hook 'skewer-html-mode)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 (add-hook 'elpy-mode-hook
           (lambda()
