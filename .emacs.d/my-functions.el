@@ -1,4 +1,10 @@
+;;; package --- Some functions I wrote
 
+;;; Commentary:
+
+(require 'cl)
+
+;;; Code:
 (defun how-many-str (regexp str)
   ;; From http://stackoverflow.com/a/11848341
   (loop with start = 0
@@ -11,7 +17,7 @@
   (interactive)
   (let ((figcount ( + 1 (how-many-str "savefig" (buffer-substring-no-properties 1 (window-point))))))
 
-    (insert 
+    (insert
      (format "savefig(gcf, %d);\n" figcount))
     (save-excursion
       (loop with start = (window-point)
@@ -150,3 +156,14 @@
 (defun projectile-root-file-local (dir)
   projectile-custom-root
   )
+
+(defun is-pdf-latex-output ()
+  (let ( (buffer-dir (file-name-sans-extension (buffer-file-name))) )
+    (if (file-exists-p (concat buffer-dir ".tex"))
+        (auto-revert-mode 1)
+      )
+    )
+  )
+
+(provide 'my-functions)
+;;; my-functions.el ends here
