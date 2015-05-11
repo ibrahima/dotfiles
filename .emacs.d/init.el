@@ -504,6 +504,11 @@ Also returns nil if pid is nil."
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+(add-hook 'elpy-mode-hook
+          (lambda()
+            (define-key elpy-mode-map (kbd "<C-left>") nil)
+            (define-key elpy-mode-map (kbd "<C-right>") nil)))
 ;; enable inline images
 (setq mu4e-view-show-images t)
 ;; use imagemagick, if available
