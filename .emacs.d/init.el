@@ -156,7 +156,8 @@
 ;;   (local-set-key (kbd "<mouse-2>") 'semantic-ia-fast-jump))
 ;; (add-hook 'c-mode-common-hook 'my-cedet-hook)
 
-(global-linum-mode 1)
+(add-hook 'prog-mode-hook 'linum-mode)
+;; (global-linum-mode 1) ;; Global linum mode screws up pdf-view mode
 (show-paren-mode 1)
 
 (require 'undo-tree)
@@ -406,12 +407,12 @@ Also returns nil if pid is nil."
 (add-hook 'MATLAB-mode-hook
           (lambda ()
             (font-lock-add-keywords nil
-                                    '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+                                    '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t)))))
 
 (add-hook 'prog-mode-hook
           (lambda ()
             (font-lock-add-keywords nil
-                                    '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+                                    '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t)))))
 
 (global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
 (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
