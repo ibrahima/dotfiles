@@ -2,6 +2,82 @@
 
 ;;; Commentary:
 
+;;; Code:
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(android-mode-sdk-dir "~/android/sdk")
+ '(ansi-color-names-vector
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+ '(column-number-mode t)
+   (quote
+    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
+ '(eclim-eclipse-dirs
+   (quote
+    ("/opt/eclipse" "/Applications/eclipse" "/usr/lib/eclipse" "/usr/local/lib/eclipse" "/usr/share/eclipse")))
+ '(eclim-executable
+   "/home/ibrahim/.eclipse/org.eclipse.platform_4.4.2_1473617060_linux_gtk_x86_64/eclim")
+ '(elpy-modules
+   (quote
+    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-sane-defaults)))
+ '(flymake-coffee-coffeelint-configuration-file "/home/ibrahim/.coffeelint.json")
+ '(httpd-root "~/git/console-mock/")
+ '(matlab-completion-technique (quote increment))
+ '(matlab-functions-have-end t)
+ '(matlab-indent-function-body t)
+ '(matlab-keyword-list
+   (quote
+    ("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end")))
+ '(matlab-mode-install-path
+   (quote
+    (/home/ibrahim/git/matlab-scripts/ /home/ibrahim/Documents/MATLAB/lightspeed/)))
+ '(org-agenda-custom-commands
+   (quote
+    (("n" "Agenda and all TODO's"
+      ((agenda "")
+       (alltodo)))
+     ("x" "Examgrader" alltodo ""
+      ((org-agenda-files
+        (quote
+         ("~/SparkleShare/braindump/examgrader.org"))))))))
+ '(paradox-automatically-star t)
+ '(paradox-execute-asynchronously t)
+ '(paradox-github-token "11a0faeff9586db82e7865c4951e8019711ea69d")
+ '(paradox-spinner-type (quote horizontal-breathing))
+ '(projectile-project-root-files-functions
+   (quote
+    (projectile-root-file-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring)))
+ '(safe-local-variable-values
+   (quote
+    ((TeX-master . "ProbabilityStatistics")
+     (TeX-engine . pdflatex)
+     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/")
+     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/.git")
+     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints")
+     (projectile-custom-root quote /home/ibrahim/git/webwork/Webwork_AdaptiveHints)
+     (projectile-custom-root . /home/ibrahim/git/webwork/Webwork_AdaptiveHints)
+     (projectile-custom-root . ~/git/webwork/Webwork_AdaptiveHints)
+     (setq tab-width 2)
+     (setq ruby-indent-tabs-mode nil)
+     (ruby-compilation-executable . "ruby")
+     (ruby-compilation-executable . "ruby1.8")
+     (ruby-compilation-executable . "ruby1.9")
+     (ruby-compilation-executable . "rbx")
+     (ruby-compilation-executable . "jruby")
+     (whitespace-line-column . 80)
+     (lexical-binding . t))))
+ '(send-mail-function (quote smtpmail-send-it))
+ '(show-paren-mode t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+
+
 ;; (ignore-errors
 ;;   (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
 
@@ -194,32 +270,6 @@
 ;; (add-to-list 'auto-mode-alist (cons openrave-base-dir 'c++-mode))
 ;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat openrave-base-dir "/openrave/config.h"))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(android-mode-sdk-dir "~/android/sdk")
- '(ansi-color-names-vector ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
- '(column-number-mode t)
- '(custom-safe-themes (quote ("21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
- '(flymake-coffee-coffeelint-configuration-file "/home/ibrahim/.coffeelint.json")
- '(matlab-completion-technique (quote increment))
- '(matlab-functions-have-end t)
- '(matlab-indent-function-body t)
- '(matlab-keyword-list (quote ("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end")))
- '(matlab-mode-install-path (quote (/home/ibrahim/git/matlab-scripts/)))
- '(org-agenda-custom-commands (quote (("n" "Agenda and all TODO's" ((agenda "") (alltodo))) ("x" "Examgrader" alltodo "" ((org-agenda-files (quote ("~/SparkleShare/braindump/examgrader.org"))))))))
- '(projectile-project-root-files-functions (quote (projectile-root-file-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring)))
- '(safe-local-variable-values (quote ((projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/") (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/.git") (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints") (projectile-custom-root quote /home/ibrahim/git/webwork/Webwork_AdaptiveHints) (projectile-custom-root . /home/ibrahim/git/webwork/Webwork_AdaptiveHints) (projectile-custom-root . ~/git/webwork/Webwork_AdaptiveHints) (setq tab-width 2) (setq ruby-indent-tabs-mode nil) (ruby-compilation-executable . "ruby") (ruby-compilation-executable . "ruby1.8") (ruby-compilation-executable . "ruby1.9") (ruby-compilation-executable . "rbx") (ruby-compilation-executable . "jruby") (whitespace-line-column . 80) (lexical-binding . t))))
- '(send-mail-function (quote smtpmail-send-it))
- '(show-paren-mode t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
 
 ; Ace jump mode - jump to anything on the screen easily
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
@@ -446,7 +496,6 @@ Also returns nil if pid is nil."
   (local-set-key "\t" 'company-complete-common)
   (local-set-key (kbd "TAB") 'company-complete-common)
   (local-set-key (kbd "[TAB]") 'company-complete-common)
-  (push 'company-readline company-backends)
   )
 
 (add-hook 'term-mode-hook (lambda () (setq term-buffer-maximum-size 8192) ))
