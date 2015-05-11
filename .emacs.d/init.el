@@ -500,3 +500,15 @@ Also returns nil if pid is nil."
 (add-hook 'css-mode-hook 'skewer-css-mode)
 (add-hook 'html-mode-hook 'skewer-html-mode)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+;; enable inline images
+(setq mu4e-view-show-images t)
+;; use imagemagick, if available
+(when (fboundp 'imagemagick-register-types)
+   (imagemagick-register-types))
+
+
+;; don't confirm opening large files
+(setq large-file-warning-threshold nil)
+
+(provide 'init)
+;;; init.el ends here
