@@ -1,3 +1,7 @@
+;;; package --- My init.el file
+
+;;; Commentary:
+
 ;; (ignore-errors
 ;;   (load-file "~/.emacs.d/cedet-1.1/common/cedet.el"))
 
