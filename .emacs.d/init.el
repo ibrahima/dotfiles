@@ -514,8 +514,20 @@ Also returns nil if pid is nil."
 (company-emacs-eclim-setup)
 
 (pdf-tools-install)
+
+(add-hook 'prog-mode-hook #'hs-minor-mode)
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;; Colors in term-mode
 (require 'ansi-color) (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+
+(setq sml/no-confirm-load-theme t)
+(sml/setup)
+(defun my/python-mode-hook ()
+  (add-to-list 'company-backends 'company-jedi))
+
+(add-hook 'python-mode-hook 'my/python-mode-hook)
 
 ;; enable inline images
 (setq mu4e-view-show-images t)
