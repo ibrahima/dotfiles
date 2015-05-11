@@ -5,3 +5,5 @@ url/
 eshell/history
 elpa
 \#!*
+.python-environments
+.cask
