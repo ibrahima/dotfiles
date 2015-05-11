@@ -53,8 +53,81 @@
                       )
   "A list of packages to ensure are installed at launch.")
 
+(require 'cl) ;; A lot of packages need cl but don't require it
+
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+(require 'use-package)
+(use-package pdf-tools
+             :config
+             (pdf-tools-install)
+             :ensure t)
+(use-package smart-mode-line
+  :defer 5
+  :config
+  (sml/setup)
+  )
 
+(use-package csv-mode)
+
+(use-package scala-mode2)
+
+(use-package groovy-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
+  )
+
+(use-package gradle-mode)
+
+(use-package robe)
+
+(use-package visual-regexp)
+
+(use-package visual-regexp-steroids)
+
+(use-package god-mode
+  :ensure t
+  :config
+  (global-set-key (kbd "<escape>") 'god-local-mode)
+  (define-key god-local-mode-map (kbd "i") 'god-local-mode)
+  (defun my-update-cursor ()
+    (setq cursor-type (if (or god-local-mode buffer-read-only)
+                          'box
+                        'bar)))
+
+  (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+  (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+)
+
+(use-package wc-mode)
+
+(use-package multiple-cursors
+  :config
+  (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  )
+
+(use-package ein)
+
+(use-package smartparens)
+
+(use-package skewer-mode
+  :config
+  (add-hook 'css-mode-hook 'skewer-css-mode)
+  (add-hook 'html-mode-hook 'skewer-html-mode)
+)
+
+(use-package js2-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+  (add-hook 'js2-mode-hook 'skewer-mode)
+  )
+
+(use-package vagrant-tramp
+  :config
+  (eval-after-load 'tramp
+    '(vagrant-tramp-enable)))
 ;; (elpy-enable)
