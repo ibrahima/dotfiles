@@ -524,6 +524,17 @@ Also returns nil if pid is nil."
 
 (setq sml/no-confirm-load-theme t)
 (sml/setup)
+
+;; (setq yas-snippet-dirs
+;;       '("~/.emacs.d/snippets"                 ;; personal snippets
+;;         "~/.emacs.d/yas-snippets"             ;; the default collection
+;;         ))
+
+;; (yas-global-mode 1) ;; or M-x yas-reload-all if you've started YASnippet already.
+
+;; (add-to-list 'yas/root-directory "~/.emacs.d/yasnippet-snippets/")
+;; (yas/initialize)
+
 (defun my/python-mode-hook ()
   (add-to-list 'company-backends 'company-jedi))
 
