@@ -512,6 +512,8 @@ Also returns nil if pid is nil."
 
 (require 'company-emacs-eclim)
 (company-emacs-eclim-setup)
+
+(pdf-tools-install)
 ;; Colors in term-mode
 (require 'ansi-color) (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
