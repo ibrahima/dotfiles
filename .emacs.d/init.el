@@ -509,6 +509,9 @@ Also returns nil if pid is nil."
           (lambda()
             (define-key elpy-mode-map (kbd "<C-left>") nil)
             (define-key elpy-mode-map (kbd "<C-right>") nil)))
+
+(require 'company-emacs-eclim)
+(company-emacs-eclim-setup)
 ;; Colors in term-mode
 (require 'ansi-color) (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 
