@@ -78,3 +78,5 @@ run_scripts ~/.bashrc.d
 export PATH=~/bin:$PATH
 
 export ACK_PAGER="less -RXF"
+
+fortune
