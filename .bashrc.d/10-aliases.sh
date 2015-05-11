@@ -33,6 +33,7 @@ alias gitcompare='git log --left-right --graph --cherry-pick --oneline'
 
 alias emacs='emacsclient -a "" -t'
 alias e='emacsclient -a "" -t'
+alias efast='/usr/bin/env emacs -Q -nw'
 alias ge='nohup emacsclient -c -a "" > ~/tmp/emacs.log &'
 export VISUAL='emacsclient -a "" -t'
 export EDITOR='emacsclient -a "" -t'
@@ -63,3 +64,4 @@ function easymail() {
 }
 
 alias syslog="less /var/log/syslog"
+alias boom="gksu pm-suspend"
