@@ -10,7 +10,7 @@
       :name "autoloads"
       :path ""
       :autoload-file "matlab-load.el")
-    (ede-proj-target-makefile-miscelaneous "misc"
+    (ede-proj-target-makefile-miscellaneous "misc"
       :name "misc"
       :path ""
       :source '("ChangeLog" "ChangeLog.old1" "ChangeLog.old2" "INSTALL" "README" "dl_emacs_support.m"))

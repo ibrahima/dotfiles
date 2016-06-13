@@ -1718,7 +1718,7 @@ Optional argument INCLUDEELSE will stop on ELSE if it matches the starting IF."
   (let (p) ;; go to here if no error.
     (save-excursion ;; don't go anywhere if there is an error
       (matlab-navigation-syntax
-        ;; skip over preceeding whitespace
+        ;; skip over preceding whitespace
         (skip-chars-forward " \t\n;")
         (if (or (not (looking-at (concat "\\("
                                          (matlab-block-beg-pre)
@@ -4853,7 +4853,7 @@ STR is a substring to complete."
       (setq output (substring output (match-end 0)))
       ;; Parse the output string.
       (while (string-match "'" output)
-	;; Hack off the preceeding quote
+	;; Hack off the preceding quote
 	(setq output (substring output (match-end 0)))
 	(string-match "'" output)
 	;; we are making a completion list, so that is a list of lists.

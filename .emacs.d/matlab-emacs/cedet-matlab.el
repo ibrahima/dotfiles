@@ -22,7 +22,7 @@
 
 ;;; Commentary:
 ;;
-;; Setup miscelaneous CEDET tools to work with MATLAB.
+;; Setup miscellaneous CEDET tools to work with MATLAB.
 
 ;;; Code:
 ;;;###autoload
