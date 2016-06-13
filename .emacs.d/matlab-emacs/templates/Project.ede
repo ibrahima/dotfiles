@@ -4,7 +4,7 @@
   :name "Templates"
   :file "Project.ede"
   :targets (list 
-   (ede-proj-target-makefile-miscelaneous "templates"
+   (ede-proj-target-makefile-miscellaneous "templates"
     :name "templates"
     :path ""
     :source '("srecode-matlab.srt")

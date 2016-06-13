@@ -169,7 +169,7 @@ This is the old-style ChangeLog before integration into CVS @ The MathWorks
      Added `matlab-maximum-indents' to hold indentation maximum data.
      Update `matlab-calculate-indentation' to use the maximums
        variable to allow custom indentation levels.  Also fixed so
-       that if a given paren is immediatly followed by EOL, or if
+       that if a given paren is immediately followed by EOL, or if
        an indent past arg1's 1st arg is followed by and EOL, then
        backup one indentation type.
 

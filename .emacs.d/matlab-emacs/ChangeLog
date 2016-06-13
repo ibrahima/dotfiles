@@ -258,7 +258,7 @@
 	Change the page delimiter to include cell breaks.
 
 	Support "parfor", available in MATLAB 2006a.
-	Treat cell start comments as the start of a comment block, even if comments preceed it.
+	Treat cell start comments as the start of a comment block, even if comments precede it.
 	Make sure typing in comment chars moves cursor to the correct location.
 
 2005-12-02  Eric Ludlam  <eludlam@mathworks.com>

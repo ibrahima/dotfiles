@@ -346,7 +346,7 @@ Call the new entrie's activate method."
 ;; are removed when the buffer buffer goes away.
 
 (defun linemark-find-file-hook ()
-  "Activate all marks which can benifit from this new buffer."
+  "Activate all marks which can benefit from this new buffer."
   (mapcar (lambda (g) (linemark-display g t)) linemark-groups))
 
 (defun linemark-kill-buffer-hook ()

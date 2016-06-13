@@ -69,7 +69,7 @@
 ;;   quickly want to print 'DEBUG ...' to stdout out etc.
 ;;
 ;; - This is not really specific to ipython, but for more convenient history
-;;   access you might want to add something like the following to *the beggining*
+;;   access you might want to add something like the following to *the beginning*
 ;;   of your ``.emacs`` (if you want behavior that's more similar to stand-alone
 ;;   ipython, you can change ``meta p`` etc. for ``control p``)::
 ;;
