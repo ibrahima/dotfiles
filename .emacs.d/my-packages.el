@@ -1,4 +1,5 @@
 (require 'package)
+;;; Code:
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
@@ -16,40 +17,38 @@
 
 ;; Add in your own as you wish:
 (defvar my-packages '(
-                      go-mode
-                      scala-mode
-                      clojure-mode
-                      yasnippet
-                      magit
-                      auto-complete
-                      expand-region
-                      mark-multiple
-                      scss-mode
-                      undo-tree
-                      kill-ring-search
-                      coffee-mode
                       ack
                       ack-and-a-half
-                      helm
-                      helm-ls-git
-                      helm-c-yasnippet
-                      elscreen
-                      ido-ubiquitous
-                      multi-eshell
-                      gist
+                      auto-complete
+                      clojure-mode
+                      company
+                      company-inf-ruby
+                      company-lua
+                      company-tern
                       dired+
-                      sass-mode
-                      yaml-mode
-                      edit-server ;; Lets you edit text fields in
-    ;; Chrome using emacs
+                      edit-server ;; Lets you edit text fields in Chrome using emacs
+                      elscreen
+                      expand-region
                       flx
                       flx-ido
-                      smex
-                      projectile
-                      company
-                      tabbar-ruler
-                      smartparens
+                      gist
+                      go-mode
+                      helm
+                      helm-c-yasnippet
+                      helm-ls-git
+                      ido-ubiquitous
+                      kill-ring-search
                       lua-mode
+                      mark-multiple
+                      multi-eshell
+                      projectile
+                      sass-mode
+                      scala-mode
+                      smex
+                      tabbar-ruler
+                      undo-tree
+                      yaml-mode
+                      yasnippet
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -59,9 +58,27 @@
   (when (not (package-installed-p p))
     (package-install p)))
 (require 'use-package)
+
+(setq use-package-always-ensure t)
+
+(use-package magit)
+
+(use-package projectile)
+
+(use-package projectile-rails
+  :config
+  (define-key projectile-rails-mode-map (kbd "C-c r H") 'hydra-projectile-rails/body)
+  )
+
+(use-package dumb-jump
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g j" . dumb-jump-go))
+  :config (setq dumb-jump-selector 'ivy)
+  )
+
 (use-package pdf-tools
              :config
-             (pdf-tools-install)
+             ;; (pdf-tools-install)
              :ensure t)
 (use-package smart-mode-line
   :defer 5
@@ -80,25 +97,29 @@
 
 (use-package gradle-mode)
 
-(use-package robe)
+;; (use-package robe)
 
-(use-package visual-regexp)
+(use-package visual-regexp
+  :bind (("C-c r" . vr/replace)
+         ("C-c q" . vr/query-replace)
+         ("C-c m" . vr/mc-mark))
+  )
 
 (use-package visual-regexp-steroids)
 
-(use-package god-mode
-  :ensure t
-  :config
-  (global-set-key (kbd "<escape>") 'god-local-mode)
-  (define-key god-local-mode-map (kbd "i") 'god-local-mode)
-  (defun my-update-cursor ()
-    (setq cursor-type (if (or god-local-mode buffer-read-only)
-                          'box
-                        'bar)))
+;; (use-package god-mode
+;;   :ensure t
+;;   :config
+;;   (global-set-key (kbd "<escape>") 'god-local-mode)
+;;   (define-key god-local-mode-map (kbd "i") 'god-local-mode)
+;;   (defun my-update-cursor ()
+;;     (setq cursor-type (if (or god-local-mode buffer-read-only)
+;;                           'box
+;;                         'bar)))
 
-  (add-hook 'god-mode-enabled-hook 'my-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'my-update-cursor)
-)
+;;   (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+;;   (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+;; )
 
 (use-package wc-mode)
 
@@ -112,7 +133,11 @@
 
 (use-package ein)
 
-(use-package smartparens)
+(use-package smartparens
+  :config
+  (require 'smartparens)
+  (require 'smartparens-html)
+  (smartparens-global-mode t))
 
 (use-package skewer-mode
   :config
@@ -126,8 +151,99 @@
   (add-hook 'js2-mode-hook 'skewer-mode)
   )
 
+(use-package js2-refactor
+  :config
+  (add-hook 'js2-mode-hook #'js2-refactor-mode)
+  )
 (use-package vagrant-tramp
   :config
   (eval-after-load 'tramp
     '(vagrant-tramp-enable)))
+
+(use-package codesearch)
+
+(use-package emacs-eclim
+  :config
+  (require 'eclimd))
+
+(use-package ensime
+  :config
+  (add-hook 'scala-mode-hook 'ensime-scala-mode-hook))
+
+(use-package corral
+  :config
+  (global-set-key (kbd "M-9") 'corral-parentheses-backward)
+  (global-set-key (kbd "M-0") 'corral-parentheses-forward)
+  ;; (global-set-key (kbd "M-[") 'corral-brackets-backward)
+  ;; (global-set-key (kbd "M-]") 'corral-brackets-forward)
+  (global-set-key (kbd "M-{") 'corral-braces-backward)
+  (global-set-key (kbd "M-}") 'corral-braces-forward)
+  (global-set-key (kbd "M-\"") 'corral-double-quotes-backward))
+
+(use-package slack
+  :commands (slack-start)
+  :init
+  (setq slack-enable-emoji t) ;; if you want to enable emoji, default nil
+  (setq slack-room-subscription '(general slackbot))
+  (setq slack-client-id "2896257985.20364130438")
+  (setq slack-client-secret "3d5cb7a3e53183475bc021d1e723968b")
+  (setq slack-token "xoxp-2896257985-13136753316-20364228934-f601a776cc"))
+(setq slack-user-name "ibrahim-emacs")
+
+(use-package coffee-mode
+  :init
+  (setq coffee-indenters-bol
+  '("class" "for" "if" "else" "unless" "while" "until"
+                               "try" "catch" "finally" "switch" "when"))
+  (setq coffee-indenters-eol '(?> ?{ ?\[ ?:)))
+
+(use-package dired-quick-sort
+  :init
+  (dired-quick-sort-setup)
+  )
+
+(use-package paradox)
+
+(use-package avy)
+(use-package counsel)
+(use-package counsel-projectile)
+(use-package ivy)
+(use-package swiper)
+(use-package ag)
+
+(use-package ansible)
+(use-package alert)
+(use-package bundler)
+
+(use-package dash-functional)
+(use-package diff-hl)
+(use-package diffview)
+(use-package dired-rainbow)
+(use-package dired-quick-sort)
+(use-package dockerfile-mode)
+(use-package flycheck)
+(use-package git-timemachine)
+(use-package jinja2-mode)
+(use-package json-mode)
+(use-package json-reformat)
+(use-package jump)
+(use-package js2-refactor)
+(use-package js2-highlight-vars)
+
+
+(use-package latex-preview-pane)
+(use-package multi-term)
+(use-package nlinum)
+(use-package rainbow-delimiters)
+(use-package rbenv)
+(use-package rjsx-mode)
+(use-package simple-httpd)
+(use-package ssh-config-mode)
+(use-package syslog-mode)
+(use-package terraform-mode)
+(use-package vagrant)
+(use-package wc-mode)
+(use-package zoom-frm)
+
+
 ;; (elpy-enable)
