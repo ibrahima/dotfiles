@@ -64,7 +64,17 @@
 
 (setq use-package-always-ensure t)
 
-(use-package magit)
+(use-package magit
+  :config
+  (magit-define-popup-switch 'magit-log-popup
+    ?v "Reverse log" "--reverse")
+  )
+
+(use-package magithub
+  :after magit
+  :config
+  (magithub-feature-autoinject t)
+  (setq magithub-clone-default-directory "~/git"))
 
 (use-package projectile)
 
@@ -82,7 +92,9 @@
 (use-package pdf-tools
              :config
              ;; (pdf-tools-install)
-             :ensure t)
+             :ensure t
+)
+
 (use-package smart-mode-line
   :defer 5
   :config
@@ -150,6 +162,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
   (add-hook 'js2-mode-hook 'skewer-mode)
+  (add-hook 'js2-mode-hook (lambda () (setq js-switch-indent-offset 2)))
   )
 
 (use-package js2-refactor
@@ -163,7 +176,7 @@
 
 (use-package codesearch)
 
-(use-package emacs-eclim
+(use-package eclim
   :config
   (require 'eclimd))
 
@@ -181,15 +194,15 @@
   (global-set-key (kbd "M-}") 'corral-braces-forward)
   (global-set-key (kbd "M-\"") 'corral-double-quotes-backward))
 
-(use-package slack
-  :commands (slack-start)
-  :init
-  (setq slack-enable-emoji t) ;; if you want to enable emoji, default nil
-  (setq slack-room-subscription '(general slackbot))
-  (setq slack-client-id "2896257985.20364130438")
-  (setq slack-client-secret "3d5cb7a3e53183475bc021d1e723968b")
-  (setq slack-token "xoxp-2896257985-13136753316-20364228934-f601a776cc"))
-(setq slack-user-name "ibrahim-emacs")
+;; (use-package slack
+;;   :commands (slack-start)
+;;   :init
+;;   (setq slack-enable-emoji t) ;; if you want to enable emoji, default nil
+;;   (setq slack-room-subscription '(general slackbot))
+;;   (setq slack-client-id "2896257985.20364130438")
+;;   (setq slack-client-secret "3d5cb7a3e53183475bc021d1e723968b")
+;;   (setq slack-token "xoxp-2896257985-13136753316-20364228934-f601a776cc"))
+;; (setq slack-user-name "ibrahim-emacs")
 
 (use-package coffee-mode
   :init
@@ -237,14 +250,35 @@
 (use-package nlinum)
 (use-package rainbow-delimiters)
 (use-package rbenv)
-(use-package rjsx-mode)
+(use-package rjsx-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
+  )
+(use-package slim-mode)
 (use-package simple-httpd)
 (use-package ssh-config-mode)
 (use-package syslog-mode)
 (use-package terraform-mode)
+(use-package typescript-mode)
+(use-package tide)
 (use-package vagrant)
 (use-package wc-mode)
+(use-package helm-open-github)
+(use-package web-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+  (add-hook 'web-mode-hook
+            (lambda ()
+              (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                (setup-tide-mode))))
+  )
 (use-package zoom-frm)
 
+(use-package ruby-block)
 
+(add-to-list 'load-path "/home/ibrahim/.emacs.d/emacs-libvterm")
+(require 'vterm)
 ;; (elpy-enable)
+
+(provide 'my-packages)
+;;; my-packages.el ends here
