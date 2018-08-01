@@ -5,6 +5,8 @@ export ANDROID_HOME=~/android/sdk
 
 # Use ccache with the Android build system
 export USE_CCACHE=1
+export CCACHE_DIR=~/android/.ccache
+
 function runactivity() {
     local activity_name=${2:-MainActivity}
     adb shell am start -n $1/.$activity_name
@@ -18,6 +20,9 @@ function adb_nexus5(){
     export ANDROID_SERIAL=039df0ef437cc1ab
 }
 
+function adb_lt03(){
+    export ANDROID_SERIAL=a85f578f
+}
 function adb_mem(){
     export ANDROID_SERIAL=70fe60d8
 }
@@ -50,4 +55,9 @@ function goto_bbench(){
 
 function bbench_start(){
     adb shell input tap 15 420
+}
+
+function debug_wear(){
+    adb -d forward tcp:4444 localabstract:/adb-hub
+    adb connect localhost:4444
 }
