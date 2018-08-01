@@ -47,7 +47,6 @@
                       multi-eshell
                       projectile
                       sass-mode
-                      scala-mode
                       smex
                       tabbar-ruler
                       undo-tree
@@ -91,8 +90,6 @@
   )
 
 (use-package csv-mode)
-
-(use-package scala-mode2)
 
 (use-package groovy-mode
   :config
