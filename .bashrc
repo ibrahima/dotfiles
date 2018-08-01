@@ -52,6 +52,11 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+if [[ $TERMINIX_ID ]]; then
+    source /etc/profile.d/vte.sh
+fi
+
+
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
@@ -77,8 +82,21 @@ run_scripts()
 
 run_scripts ~/.bashrc.d
 
-export PATH=~/bin:$PATH
-
 export ACK_PAGER="less -RXF"
 
 fortune
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export NVM_DIR="/home/ibrahim/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH=~/bin:$PATH
+export PATH=/usr/local/packer:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/ibrahim/Downloads/google-cloud-sdk/path.bash.inc' ]; then source '/home/ibrahim/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/ibrahim/Downloads/google-cloud-sdk/completion.bash.inc' ]; then source '/home/ibrahim/Downloads/google-cloud-sdk/completion.bash.inc'; fi
