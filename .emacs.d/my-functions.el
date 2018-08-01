@@ -517,5 +517,156 @@ Staging and applying changes is documented in info node
 
 (delete-old-backup-files)
 
+https://emacs.stackexchange.com/questions/13822/set-default-branch-or-revision-to-diff-against-in-magit
+(defun magit-diff-master (&optional args)
+  "Show diff range master...HEAD"
+  (interactive)
+  (magit-diff "master...HEAD" args))
+
+(defun magit-diff-mbase (&optional args)
+  "Show diff of $(git merge-base master HEAD) to working tree."
+  (interactive)
+  (magit-diff-working-tree
+   (magit-git-string "merge-base" "master" "HEAD") args))
+
+(magit-define-popup-action 'magit-diff-popup
+  ?m "Diff merge-base master" 'magit-diff-mbase)
+
+(defun rename-current-buffer-file ()
+  "Renames current buffer and file it is visiting."
+  (interactive)
+  (let* ((name (buffer-name))
+        (filename (buffer-file-name))
+        (basename (file-name-nondirectory filename)))
+    (if (not (and filename (file-exists-p filename)))
+        (error "Buffer '%s' is not visiting a file!" name)
+      (let ((new-name (read-file-name "New name: " (file-name-directory filename) basename nil basename)))
+        (if (get-buffer new-name)
+            (error "A buffer named '%s' already exists!" new-name)
+          (rename-file filename new-name 1)
+          (rename-buffer new-name)
+          (set-visited-file-name new-name)
+          (set-buffer-modified-p nil)
+          (message "File '%s' successfully renamed to '%s'"
+                   name (file-name-nondirectory new-name)))))))
+
+;; (defun org-clock-in-by-name ()
+;;   "Clocks into an agenda task by name (fuzzy match)"
+;;   (interactive)
+;;   (org-todo-list)
+;;   (swiper)
+;;   (org-agenda-clock-in)
+;;   ;; (counsel-org-goto-all)
+;;   ;; (org-clock-in)
+;;   )
+
+(defun counsel-clock-in-by-name ()
+  "Clocks into an agenda task by name (fuzzy match)"
+  (interactive)
+  (condition-case err
+      (progn
+        (switch-to-buffer "gradescope_activity.org")
+        (counsel-org-goto)
+        ;; This doesn't work because somehow it doesn't switch buffers
+        ;; before org-clock-in gets called
+        ;; (counsel-org-goto-all)
+        (org-clock-in)
+        )
+    ;; If task was not found, it's a new task, so make one under some heading
+    (wrong-type-argument
+     (message "%s" err)
+     (let ((task-name (caddr err)))
+       (message "Creating new task %s" task-name)
+       (switch-to-buffer "gradescope_activity.org")
+       (counsel-org-goto)
+       (org-insert-todo-subheading '(4))
+       (insert task-name)
+       (org-clock-in nil)
+       )
+     )
+    )
+  )
+
+
+(defun set-font-size ()
+    "Set the font size."
+  (interactive)
+  (set-face-attribute
+   'default nil :height
+   (string-to-number
+    (read-string "Font size: " (number-to-string (face-attribute 'default :height nil))))))
+
+
+;; (define-advice secrets-search-items (:override (collection &rest attributes) my-secrets-search-fixed)
+;;   "Fix cons building in dbus-call-method call"
+;;   (let ((collection-path (secrets-unlock-collection collection))
+;;         result props)
+;;     (unless (secrets-empty-path collection-path)
+;;       ;; Create attributes list.
+;;       (while (consp (cdr attributes))
+;;         (unless (keywordp (car attributes))
+;;           (error 'wrong-type-argument (car attributes)))
+;;         (unless (stringp (cadr attributes))
+;;           (error 'wrong-type-argument (cadr attributes)))
+;;         (setq props (append
+;;                      props
+;;                      (list :dict-entry
+;;                            (substring (symbol-name (car attributes)) 1)
+;;                            (cadr attributes)))
+;;               attributes (cddr attributes)))
+;;       ;; Search.  The result is a list of object paths.
+;;       (setq result
+;;             (dbus-call-method
+;;              :session secrets-service collection-path
+;;              secrets-interface-collection "SearchItems"
+;;              (if props
+;;                  (cons :array props)
+;;                '(:array :signature "{ss}"))))
+;;       ;; Return the found items.
+;;       (mapcar
+;;        (lambda (item-path) (secrets-get-item-property item-path "Label"))
+;;        result))))
+
+(eval-after-load "secrets"
+  (defun secrets-search-items (collection &rest attributes)
+    "Search items in COLLECTION with ATTRIBUTES.
+ATTRIBUTES are key-value pairs.  The keys are keyword symbols,
+starting with a colon.  Example:
+
+  (secrets-search-items \"Tramp collection\" :user \"joe\")
+
+The object labels of the found items are returned as list."
+    (let ((collection-path (secrets-unlock-collection collection))
+          result props)
+      (unless (secrets-empty-path collection-path)
+        ;; Create attributes list.
+        (while (consp (cdr attributes))
+          (unless (keywordp (car attributes))
+            (error 'wrong-type-argument (car attributes)))
+          (unless (stringp (cadr attributes))
+            (error 'wrong-type-argument (cadr attributes)))
+          (setq props (append
+                       props
+                       (list :dict-entry
+                             ;; HACK fixed so that dict entries are conses
+                             (list
+                              (substring (symbol-name (car attributes)) 1)
+                              (cadr attributes))))
+                attributes (cddr attributes)))
+        (prin1 props)
+        ;; Search.  The result is a list of object paths.
+        (setq result
+              (dbus-call-method
+               :session secrets-service collection-path
+               secrets-interface-collection "SearchItems"
+               (if props
+                   (cons :array props)
+                 '(:array :signature "{ss}"))))
+        ;; Return the found items.
+        (mapcar
+         (lambda (item-path) (secrets-get-item-property item-path "Label"))
+         result))))
+  )
+
 (provide 'my-functions)
 ;;; my-functions.el ends here
