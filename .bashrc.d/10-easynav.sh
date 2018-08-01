@@ -48,3 +48,5 @@ fi
 
 # [c]hange [b]ack
 alias cb='cd -'
+
+eval "$(fasd --init auto)"
