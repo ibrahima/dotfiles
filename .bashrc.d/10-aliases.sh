@@ -95,3 +95,56 @@ ix() {
     curl $opts -F f:1='<-' $* ix.io/$id
 }
 
+function pwdtopath() {
+    PWD=$(pwd)
+    export PATH=$PWD:$PATH
+    echo "PATH is now $PATH"
+}
+
+alias dispwork="disper -d eDP-1,DP-1 -t top -e"
+alias displaptop="disper -d eDP-1 -s"
+
+function wunderground(){
+    curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-<YOURZIPORLOCATION>}"|perl -ne '/<title>([^<]+)/&&printf "%s: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';
+}
+
+function gs_to_jpg(){
+    GS_FLAGS="-sDEVICE=jpeg -dNOPAUSE -dBATCH -dSAFER -dPDFSTOPONERROR"
+    gs $GS_FLAGS -sOutputFile=$2 -r300 $1 2>&1
+}
+
+function poppler_to_jpg(){
+    pdftocairo -r 300 -jpeg $1 $2 2>&1
+}
+
+function rb_heap_dump(){
+    zcat $1  | ruby -rjson -ne ' obj = JSON.parse($_).values_at("file","line","type"); puts obj.join(":") if obj.first ' |     sort      |     uniq -c   |     sort -n   |     tail -20
+}
+
+alias railsc="ssh gsdev -t 'bash -l -c \"cd /app;rails c\"'"
+alias sl="ls"
+
+alias docker_clean_containers="docker ps --filter 'status=exited' -aq | xargs docker rm"
+alias docker_clean_images="docker images --filter 'dangling=true' -q | xargs docker rmi"
+
+alias dc-ssh="docker-compose exec web bash"
+alias dc-up="docker-compose up"
+
+function gsdev() {
+    case $1 in
+        "up")
+            cd ~/gradescope/gradescope-app && docker-compose up
+            ;;
+        "down")
+            cd ~/gradescope/gradescope-app && docker-compose down
+            ;;
+        "ssh")
+            cd ~/gradescope/gradescope-app && docker-compose exec web bash
+            ;;
+        *)
+            cd ~/gradescope/gradescope-app && docker-compose exec web bash
+            ;;
+    esac
+}
+
+alias hyper_spawn="hyper run -d --size=m3 --entrypoint=/bin/bash gradescope/test -c \"buildkite-agent start --disconnect-after-job --disconnect-after-job-timeout 120\""
