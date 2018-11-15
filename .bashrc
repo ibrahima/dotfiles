@@ -94,6 +94,7 @@ export NVM_DIR="/home/ibrahim/.nvm"
 
 export PATH=~/bin:$PATH
 export PATH=/usr/local/packer:$PATH
+export PATH=~/.local/bin:$PATH
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/ibrahim/Downloads/google-cloud-sdk/path.bash.inc' ]; then source '/home/ibrahim/Downloads/google-cloud-sdk/path.bash.inc'; fi
