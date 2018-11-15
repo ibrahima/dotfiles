@@ -147,4 +147,9 @@ function gsdev() {
     esac
 }
 
+function feog() {
+    path=$(readlink -f $1)
+    echo "local awful = require(\"awful\") ; awful.spawn(\"eog $path\", {floating = true})" | awesome-client
+}
+
 alias hyper_spawn="hyper run -d --size=m3 --entrypoint=/bin/bash gradescope/test -c \"buildkite-agent start --disconnect-after-job --disconnect-after-job-timeout 120\""
