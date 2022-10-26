@@ -22,14 +22,11 @@
 ;; Add in your own as you wish:
 (defvar my-packages '(
                       ack
-                      ack-and-a-half
                       auto-complete
                       clojure-mode
                       company
                       company-inf-ruby
                       company-lua
-                      company-tern
-                      dired+
                       edit-server ;; Lets you edit text fields in Chrome using emacs
                       elscreen
                       expand-region
@@ -40,11 +37,9 @@
                       helm
                       helm-c-yasnippet
                       helm-ls-git
-                      ido-ubiquitous
                       kill-ring-search
                       lua-mode
                       mark-multiple
-                      multi-eshell
                       projectile
                       sass-mode
                       smex
@@ -60,6 +55,7 @@
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
 (require 'use-package)
 
 (setq use-package-always-ensure t)
