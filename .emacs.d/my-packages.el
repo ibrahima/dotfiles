@@ -77,6 +77,9 @@
   (define-key projectile-rails-mode-map (kbd "C-c r H") 'hydra-projectile-rails/body)
   )
 
+(use-package ripgrep)
+(use-package projectile-ripgrep)
+
 (use-package dumb-jump
   :bind (("M-g o" . dumb-jump-go-other-window)
          ("M-g j" . dumb-jump-go))
