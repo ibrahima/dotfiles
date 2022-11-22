@@ -40,7 +40,6 @@
                       kill-ring-search
                       lua-mode
                       mark-multiple
-                      projectile
                       sass-mode
                       smex
                       tabbar-ruler
@@ -66,13 +65,13 @@
     ?v "Reverse log" "--reverse")
   )
 
-(use-package magithub
-  :after magit
+(use-package projectile
   :config
-  (magithub-feature-autoinject t)
-  (setq magithub-clone-default-directory "~/git"))
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+  (counsel-projectile-mode +1)
+  )
 
-(use-package projectile)
 
 (use-package projectile-rails
   :config
