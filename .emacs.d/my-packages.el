@@ -38,7 +38,6 @@
                       helm-ls-git
                       kill-ring-search
                       lua-mode
-                      mark-multiple
                       sass-mode
                       smex
                       tabbar-ruler
