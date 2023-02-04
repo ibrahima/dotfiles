@@ -247,7 +247,7 @@
 (use-package multi-term)
 (use-package nlinum)
 (use-package rainbow-delimiters)
-(use-package rbenv)
+(use-package chruby)
 (use-package rjsx-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . rjsx-mode))
