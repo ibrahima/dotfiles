@@ -79,6 +79,8 @@
 (use-package ripgrep)
 (use-package projectile-ripgrep)
 
+(use-package epkg)
+
 (use-package dumb-jump
   :bind (("M-g o" . dumb-jump-go-other-window)
          ("M-g j" . dumb-jump-go))
@@ -268,12 +270,13 @@
               (when (string-equal "tsx" (file-name-extension buffer-file-name))
                 (setup-tide-mode))))
   )
-(use-package zoom-frm)
+;; (use-package zoom-frm)
 
 (use-package ruby-block)
 
-(add-to-list 'load-path "/home/ibrahim/.emacs.d/emacs-libvterm")
-(require 'vterm)
+(use-package vterm)
+
+(use-package borg)
 ;; (elpy-enable)
 
 (provide 'my-packages)

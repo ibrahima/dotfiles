@@ -1,0 +1,9 @@
+[submodule "frame-cmds"]
+	path = .emacs.d/borg/frame-cmds
+	url = git@github.com:emacsmirror/frame-cmds.git
+[submodule "frame-fns"]
+	path = .emacs.d/borg/frame-fns
+	url = git@github.com:emacsmirror/frame-fns.git
+[submodule "zoom-frm"]
+	path = .emacs.d/borg/zoom-frm
+	url = git@github.com:emacsmirror/zoom-frm.git
