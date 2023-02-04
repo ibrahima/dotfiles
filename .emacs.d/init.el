@@ -556,65 +556,69 @@
 
 ;; (auto-indent-global-mode)
 
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
-(require 'smtpmail)
+(setq use-mu4e nil)
+(if use-mu4e
+    (
+    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+    (require 'mu4e)
+    (require 'smtpmail)
 
-(setq
- mu4e-maildir       "~/Maildir"   ;; top-level Maildir
- mu4e-sent-folder   "/ibrahim.awwal@gmail.com/sent"       ;; folder for sent messages
- mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts"     ;; unfinished messages
- mu4e-trash-folder  "/ibrahim.awwal@gmail.com/trash"      ;; trashed messages
- mu4e-refile-folder "/ibrahim.awwal@gmail.com/archive"    ;; saved messages
- user-mail-address "ibrahim.awwal@gmail.com"
- smtpmail-default-smtp-server "smtp.gmail.com"
- smtpmail-local-domain "gmail.com"
- smtpmail-smtp-server "smtp.gmail.com"
- smtpmail-stream-type 'starttls
- smtpmail-smtp-service 587
-)
+    (setq
+   mu4e-maildir       "~/Maildir"   ;; top-level Maildir
+   mu4e-sent-folder   "/ibrahim.awwal@gmail.com/sent"       ;; folder for sent messages
+   mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts"     ;; unfinished messages
+   mu4e-trash-folder  "/ibrahim.awwal@gmail.com/trash"      ;; trashed messages
+   mu4e-refile-folder "/ibrahim.awwal@gmail.com/archive"    ;; saved messages
+   user-mail-address "ibrahim.awwal@gmail.com"
+   smtpmail-default-smtp-server "smtp.gmail.com"
+   smtpmail-local-domain "gmail.com"
+   smtpmail-smtp-server "smtp.gmail.com"
+   smtpmail-stream-type 'starttls
+   smtpmail-smtp-service 587
+   )
 
-(defvar my-mu4e-account-alist
-  '(("ibrahim.awwal@gmail.com"
-     (mu4e-sent-folder "/ibrahim.awwal@gmail.com/sent")
-     (mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts")
-     (user-mail-address "ibrahim.awwal@gmail.com")
-     (smtpmail-default-smtp-server "smtp.gmail.com")
-     (smtpmail-local-domain "gmail.com")
-     (smtpmail-smtp-server "smtp.gmail.com")
-     (smtpmail-smtp-service 587))
-    ("iawwal@eng.ucsd.edu"
-     (mu4e-sent-folder "/iawwal@eng.ucsd.edu/sent")
-     (mu4e-drafts-folder "/iawwal@eng.ucsd.edu/drafts")
-     (user-mail-address "iawwal@eng.ucsd.edu")
-     (smtpmail-default-smtp-server "smtp.gmail.com")
-     (smtpmail-local-domain "eng.ucsd.edu")
-     (smtpmail-smtp-server "smtp.gmail.com")
-     (smtpmail-smtp-service 587))))
+  (defvar my-mu4e-account-alist
+    '(("ibrahim.awwal@gmail.com"
+       (mu4e-sent-folder "/ibrahim.awwal@gmail.com/sent")
+       (mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts")
+       (user-mail-address "ibrahim.awwal@gmail.com")
+       (smtpmail-default-smtp-server "smtp.gmail.com")
+       (smtpmail-local-domain "gmail.com")
+       (smtpmail-smtp-server "smtp.gmail.com")
+       (smtpmail-smtp-service 587))
+      ("iawwal@eng.ucsd.edu"
+       (mu4e-sent-folder "/iawwal@eng.ucsd.edu/sent")
+       (mu4e-drafts-folder "/iawwal@eng.ucsd.edu/drafts")
+       (user-mail-address "iawwal@eng.ucsd.edu")
+       (smtpmail-default-smtp-server "smtp.gmail.com")
+       (smtpmail-local-domain "eng.ucsd.edu")
+       (smtpmail-smtp-server "smtp.gmail.com")
+       (smtpmail-smtp-service 587))))
 
-(defun my-mu4e-set-account ()
-  "Set the account for composing a message."
-  (let* ((account
-          (if mu4e-compose-parent-message
-              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                (string-match "/\\(.*?\\)/" maildir)
-                (match-string 1 maildir))
-            (completing-read (format "Compose with account: (%s) "
-                                     (mapconcat #'(lambda (var) (car var)) my-mu4e-account-alist "/"))
-                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                             nil t nil nil (caar my-mu4e-account-alist))))
-         (account-vars (cdr (assoc account my-mu4e-account-alist))))
-    (if account-vars
-        (mapc #'(lambda (var)
-                  (set (car var) (cadr var)))
-              account-vars)
-      (error "No email account found"))))
+  (defun my-mu4e-set-account ()
+    "Set the account for composing a message."
+    (let* ((account
+            (if mu4e-compose-parent-message
+                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                  (string-match "/\\(.*?\\)/" maildir)
+                  (match-string 1 maildir))
+              (completing-read (format "Compose with account: (%s) "
+                                       (mapconcat #'(lambda (var) (car var)) my-mu4e-account-alist "/"))
+                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                               nil t nil nil (caar my-mu4e-account-alist))))
+           (account-vars (cdr (assoc account my-mu4e-account-alist))))
+      (if account-vars
+          (mapc #'(lambda (var)
+                    (set (car var) (cadr var)))
+                account-vars)
+        (error "No email account found"))))
 
-(add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
-(setq
- mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
- mu4e-update-interval 300)             ;; update every 5 minutes
+  (setq
+   mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
+   mu4e-update-interval 300)             ;; update every 5 minutes
+  ))
 
 (defun json-format ()
   (interactive)
