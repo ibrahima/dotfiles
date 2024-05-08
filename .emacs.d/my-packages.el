@@ -289,5 +289,31 @@
 (use-package multi-vterm)
 ;; (elpy-enable)
 
+(use-package copilot
+  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :config
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  )
+
+(use-package apheleia
+  :straight t
+  :config
+  (apheleia-global-mode +1)
+  (push '(stree . ("stree" "format" filepath)) apheleia-formatters)
+  (setf (alist-get 'ruby-mode apheleia-mode-alist)
+        'stree)
+  (setf (alist-get 'ruby-ts-mode apheleia-mode-alist)
+        'stree)
+  (set-variable 'apheleia-log-debug-info t)
+  )
+
+;; Highlights the matching opening delimeter when it is off screen
+(use-package matching-paren-overlay
+  :straight (:host nil :type git :repo "https://codeberg.org/acdw/matching-paren-overlay.el")
+  :config
+  (matching-paren-overlay-global-mode)
+  )
 (provide 'my-packages)
 ;;; my-packages.el ends here
