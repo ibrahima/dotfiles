@@ -312,5 +312,28 @@
   :config
   (matching-paren-overlay-global-mode)
   )
+
+(use-package org-roam
+  :config
+  (setq org-roam-directory "~/git/org-roam-notes")
+  (org-roam-db-autosync-mode)
+  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry
+           "* %?"
+           :target (file+head "%<%Y-%m-%d>.org"
+                              "#+title: %<%Y-%m-%d>\n"))))
+
+  (defhydra hydra-org-roam (:exit t :idle 0.8)
+    "Launcher for `org-roam'."
+    ("i" org-roam-insert "insert")
+    ("f" ora-org-roam-find-file "find-file")
+    ("v" org-roam-buffer-activate "backlinks")
+    ("t" ora-roam-todo "todo"))
+  )
+
+(use-package org-roam-ui)
+
+(use-package git-auto-commit-mode)
 (provide 'my-packages)
 ;;; my-packages.el ends here
