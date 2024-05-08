@@ -335,5 +335,20 @@
 (use-package org-roam-ui)
 
 (use-package git-auto-commit-mode)
+
+(use-packag inf-ruby
+            :config
+            (defun inf-ruby-console-script (dir)
+              "Run custom bin/console, console or console.rb in DIR."
+              (interactive (list (inf-ruby-console-read-directory 'script)))
+              (let ((default-directory (file-name-as-directory dir)))
+                (cond
+                 ((file-exists-p "bin/console")
+                  (inf-ruby-console-run "bin/console" "bin/console"))
+                 ((file-exists-p "console.rb")
+                  (inf-ruby-console-run "bundle exec ruby console.rb" "console.rb"))
+                 ((file-exists-p "console")
+                  (inf-ruby-console-run "console" "console")))))
+            )
 (provide 'my-packages)
 ;;; my-packages.el ends here
