@@ -285,8 +285,8 @@
 
 (use-package ruby-block)
 
-(add-to-list 'load-path "/home/ibrahim/.emacs.d/emacs-libvterm")
-(require 'vterm)
+(use-package vterm)
+(use-package multi-vterm)
 ;; (elpy-enable)
 
 (provide 'my-packages)
