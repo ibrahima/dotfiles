@@ -281,9 +281,6 @@
               (when (string-equal "tsx" (file-name-extension buffer-file-name))
                 (setup-tide-mode))))
   )
-(use-package zoom-frm)
-
-(use-package ruby-block)
 
 (use-package vterm)
 (use-package multi-vterm)
