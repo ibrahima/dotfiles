@@ -18,6 +18,19 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
 ;; Add in your own as you wish:
 (defvar my-packages '(
                       ack
@@ -274,10 +287,75 @@
 
 (use-package ruby-block)
 
-(use-package vterm)
-
 (use-package borg)
+
+(use-package vterm)
+(use-package multi-vterm)
 ;; (elpy-enable)
 
+(use-package copilot
+  :straight (:host github :repo "zerolfx/copilot.el" :files ("dist" "*.el"))
+  :config
+  (add-hook 'prog-mode-hook 'copilot-mode)
+  (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  )
+
+(use-package apheleia
+  :straight t
+  :config
+  (apheleia-global-mode +1)
+  (push '(stree . ("stree" "format" filepath)) apheleia-formatters)
+  (setf (alist-get 'ruby-mode apheleia-mode-alist)
+        'stree)
+  (setf (alist-get 'ruby-ts-mode apheleia-mode-alist)
+        'stree)
+  (set-variable 'apheleia-log-debug-info t)
+  )
+
+;; Highlights the matching opening delimeter when it is off screen
+(use-package matching-paren-overlay
+  :straight (:host nil :type git :repo "https://codeberg.org/acdw/matching-paren-overlay.el")
+  :config
+  (matching-paren-overlay-global-mode)
+  )
+
+(use-package org-roam
+  :config
+  (setq org-roam-directory "~/git/org-roam-notes")
+  (org-roam-db-autosync-mode)
+  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry
+           "* %?"
+           :target (file+head "%<%Y-%m-%d>.org"
+                              "#+title: %<%Y-%m-%d>\n"))))
+
+  (defhydra hydra-org-roam (:exit t :idle 0.8)
+    "Launcher for `org-roam'."
+    ("i" org-roam-insert "insert")
+    ("f" ora-org-roam-find-file "find-file")
+    ("v" org-roam-buffer-activate "backlinks")
+    ("t" ora-roam-todo "todo"))
+  )
+
+(use-package org-roam-ui)
+
+(use-package git-auto-commit-mode)
+
+(use-packag inf-ruby
+            :config
+            (defun inf-ruby-console-script (dir)
+              "Run custom bin/console, console or console.rb in DIR."
+              (interactive (list (inf-ruby-console-read-directory 'script)))
+              (let ((default-directory (file-name-as-directory dir)))
+                (cond
+                 ((file-exists-p "bin/console")
+                  (inf-ruby-console-run "bin/console" "bin/console"))
+                 ((file-exists-p "console.rb")
+                  (inf-ruby-console-run "bundle exec ruby console.rb" "console.rb"))
+                 ((file-exists-p "console")
+                  (inf-ruby-console-run "console" "console")))))
+            )
 (provide 'my-packages)
 ;;; my-packages.el ends here
