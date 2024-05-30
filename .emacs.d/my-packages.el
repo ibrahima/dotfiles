@@ -38,7 +38,6 @@
                       clojure-mode
                       company
                       company-inf-ruby
-                      company-lua
                       edit-server ;; Lets you edit text fields in Chrome using emacs
                       elscreen
                       expand-region
@@ -49,7 +48,6 @@
                       helm
                       helm-c-yasnippet
                       helm-ls-git
-                      kill-ring-search
                       lua-mode
                       sass-mode
                       smex
@@ -246,7 +244,25 @@
 (use-package dired-rainbow)
 (use-package dired-quick-sort)
 (use-package dockerfile-mode)
-(use-package flycheck)
+(use-package flycheck
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (setq flycheck-disabled-checkers '(ruby-rubylint))
+
+  (flycheck-define-checker ruby-reek
+                           "A Ruby smell checker using reek
+See URL `https://github.com/troessner/reek'."
+                           :command ("reek" "--format=xml"
+                                     source)
+                           :standard-input t
+                           :error-parser flycheck-parse-checkstyle
+                           :modes (enh-ruby-mode ruby-mode))
+
+  (add-to-list 'flycheck-checkers 'ruby-reek 'append)
+
+  (flycheck-add-next-checker 'ruby-rubocop '(t . ruby-reek) t
+                             )
+  )
 (use-package git-timemachine)
 (use-package jinja2-mode)
 (use-package json-mode)

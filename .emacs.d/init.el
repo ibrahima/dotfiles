@@ -901,20 +901,6 @@ Also returns nil if pid is nil."
                (lambda (_ _) nil))
   (enable-paredit-mode))
 
-(require 'flycheck)
-(flycheck-define-checker ruby-reek
-  "A Ruby smell checker using reek
-See URL `https://github.com/troessner/reek'."
-  :command ("reek" "--format=xml"
-            source)
-  :standard-input t
-  :error-parser flycheck-parse-checkstyle
-  :modes (enh-ruby-mode ruby-mode))
-
-(add-to-list 'flycheck-checkers 'ruby-reek 'append)
-
-(flycheck-add-next-checker 'ruby-rubocop '(t . ruby-reek) t)
-
 (setq ruby-insert-encoding-magic-comment nil)
 
 ;; (flycheck-define-checker rails-bp
