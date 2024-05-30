@@ -278,12 +278,6 @@
      (comment-start . @)
      (TeX-master . "ProbabilityStatistics")
      (TeX-engine . pdflatex)
-     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/")
-     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints/.git")
-     (projectile-custom-root . "/home/ibrahim/git/webwork/Webwork_AdaptiveHints")
-     (projectile-custom-root quote /home/ibrahim/git/webwork/Webwork_AdaptiveHints)
-     (projectile-custom-root . /home/ibrahim/git/webwork/Webwork_AdaptiveHints)
-     (projectile-custom-root . ~/git/webwork/Webwork_AdaptiveHints)
      (setq tab-width 2)
      (setq ruby-indent-tabs-mode nil)
      (ruby-compilation-executable . "ruby")
@@ -315,21 +309,17 @@
 
 (ido-mode t)
 (ido-everywhere)
-; (setq ido-enable-flex-matching t)
+                                        ; (setq ido-enable-flex-matching t)
 (flx-ido-mode t)
-; (setq ido-use-faces nil)
-; Desktop mode saves your emacs session and restores it when you start emacs
+                                        ; (setq ido-use-faces nil)
+                                        ; Desktop mode saves your emacs session and restores it when you start emacs
 (desktop-save-mode 1)
 (projectile-global-mode)
 
 (setenv "PAGER" (executable-find "cat"))
 
-(ignore-errors
-  (require 'rosemacs)
-  (invoke-rosemacs))
-
 (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                  ; when Smex is auto-initialized on its first run.
+                                        ; when Smex is auto-initialized on its first run.
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -343,7 +333,7 @@
 (setq require-final-newline nil)
 
 (add-hook 'python-mode-hook '(lambda ()
- (setq python-indent 4)))
+                               (setq python-indent 4)))
 
 ;; (setq default-tab-width 4)
 
@@ -359,8 +349,8 @@
 
 (require 'uniquify)
 (setq
-  uniquify-buffer-name-style 'post-forward
-  uniquify-separator ":")
+ uniquify-buffer-name-style 'post-forward
+ uniquify-separator ":")
 
 (defun load-init-el ()
   "Loads init.el"
@@ -373,8 +363,8 @@
   (find-file "~/.emacs.d/init.el"))
 
 (add-hook 'c-mode-common-hook
-  (lambda()
-    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+          (lambda()
+            (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 (global-set-key (kbd "M-S-<left>")  'windmove-left)
 (global-set-key (kbd "M-S-<right>") 'windmove-right)
@@ -400,14 +390,14 @@
 ;; This slows down the launch a little but in my case I have an alias for make
 ;; that automatically parallelizes builds, plus this is more reproducible
 ;; [Commented out for now because it's slow, but I might want it later]
-; (setq shell-file-name "bash")
-; (setq shell-command-switch "-ic")
+                                        ; (setq shell-file-name "bash")
+                                        ; (setq shell-command-switch "-ic")
 
 ;; Beginning of the el4r block:
 ;; RCtool generated this block automatically. DO NOT MODIFY this block!
-;(add-to-list 'load-path "/home/ibrahim/.rvm/rubies/ruby-1.9.3-p125/share/emacs/site-lisp")
-;(require 'el4r)
-;(el4r-boot)
+                                        ;(add-to-list 'load-path "/home/ibrahim/.rvm/rubies/ruby-1.9.3-p125/share/emacs/site-lisp")
+                                        ;(require 'el4r)
+                                        ;(el4r-boot)
 ;; End of the el4r block.
 ;; User-setting area is below this line.
 
@@ -419,60 +409,14 @@
 (setq create-lockfiles nil)
 
 ;; Org mode
-(setq org-directory "~/SparkleShare/braindump/")
-(setq org-default-notes-file (concat org-directory "notes.org"))
-;; (setq org-agenda-files '("~/SparkleShare/braindump"
-;;              ))
 (setq org-todo-keywords
-    '((sequence "TODO" "WIP" "|" "DONE")))
-
-;; (global-ede-mode t)
-
-; Semantic stuff
-;; (semantic-load-enable-excessive-code-helpers)
-;; (require 'semantic-ia)
-;; (require 'semantic-gcc)
-;; (semantic-add-system-include "/usr/include" 'c++-mode)
-
-;; (ede-cpp-root-project "Bulletsim"
-;;                 :name "Bulletsim"
-;;                 :file "~/research/bulletsim/CMakeLists.txt"
-;;                 :include-path '("/src"
-;;                                 "/src/sqp"
-;;                                 "/src/moveit"
-;;                                 "/src/roots"
-;;                                 "/src/simulation"
-;;                                )
-;;                 :system-include-path '("/opt/gurobi501/linux64/include")
-;;                 :spp-table '(("isUnix" . "")
-;;                              ("BOOST_TEST_DYN_LINK" . "")))
-
-;; (ede-cpp-root-project "Trajopt"
-;;                 :name "trajopt"
-;;                 :file "~/research/trajopt/CMakeLists.txt"
-;;                 :include-path '("/src"
-;;                                 "/src/ipi"
-;;                                 "/src/ipi/sco"
-;;                                 "/src/utils"
-;;                                 "/src/trajopt"
-;;                                )
-;;                 :system-include-path '("/opt/gurobi501/linux64/include")
-;;                 :spp-table '(("isUnix" . "")
-;;                              ("BOOST_TEST_DYN_LINK" . "")))
+      '((sequence "TODO" "WIP" "|" "DONE")))
 
 (global-unset-key (kbd "<mouse-2>"))
 
-;; (defun my-cedet-hook ()
-;;   (local-set-key [(control return)] 'semantic-ia-complete-symbol)
-;;   (local-set-key "\C-c?" 'semantic-ia-complete-symbol-menu)
-;;   (local-set-key "\C-c>" 'semantic-complete-analyze-inline)
-;;   (local-set-key "\C-cp" 'semantic-analyze-proto-impl-toggle)
-;;   (local-set-key (kbd "<mouse-2>") 'semantic-ia-fast-jump))
-;; (add-hook 'c-mode-common-hook 'my-cedet-hook)
+;; Global linum mode screws up pdf-view mode
+(add-hook 'prog-mode-hook #'display-line-numbers-mode)
 
-(add-hook 'prog-mode-hook 'linum-mode)
-
-;; (global-linum-mode 1) ;; Global linum mode screws up pdf-view mode
 (show-paren-mode 1)
 
 (require 'undo-tree)
@@ -484,29 +428,14 @@
 
 (setq mouse-autoselect-window t)
 
-; MobileOrg
+                                        ; MobileOrg
 (if (eq system-type 'windows-nt)
     (setq org-mobile-directory "f:/Dropbox/MobileOrg")
   (setq org-mobile-directory "~/Dropbox/MobileOrg"))
 (setq org-mobile-inbox-for-pull (concat (file-name-as-directory org-mobile-directory) "from-mobile.org"))
 
-; OpenRAVE include paths, can't believe I didn't know about this though it was right on the site
-(defun openrave-package-path ()
-  (save-excursion
-    (with-temp-buffer
-      (call-process "openrave-config" nil t nil "--cflags-only-I")
-      (goto-char (point-min))
-      (re-search-forward "^-I\\(.*\\)[ \\|$]")
-      (match-string 1))))
 
-;; (setq openrave-base-dir (openrave-package-path))
-;; (semantic-add-system-include openrave-base-dir 'c++-mode)
-;; (semantic-add-system-include openrave-base-dir 'c-mode)
-;; (add-to-list 'auto-mode-alist (cons openrave-base-dir 'c++-mode))
-;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat openrave-base-dir "/openrave/config.h"))
-
-
-; Ace jump mode - jump to anything on the screen easily
+                                        ; Ace jump mode - jump to anything on the screen easily
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 (global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
@@ -559,66 +488,66 @@
 (setq use-mu4e nil)
 (if use-mu4e
     (
-    (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-    (require 'mu4e)
-    (require 'smtpmail)
+     (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+     (require 'mu4e)
+     (require 'smtpmail)
 
-    (setq
-   mu4e-maildir       "~/Maildir"   ;; top-level Maildir
-   mu4e-sent-folder   "/ibrahim.awwal@gmail.com/sent"       ;; folder for sent messages
-   mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts"     ;; unfinished messages
-   mu4e-trash-folder  "/ibrahim.awwal@gmail.com/trash"      ;; trashed messages
-   mu4e-refile-folder "/ibrahim.awwal@gmail.com/archive"    ;; saved messages
-   user-mail-address "ibrahim.awwal@gmail.com"
-   smtpmail-default-smtp-server "smtp.gmail.com"
-   smtpmail-local-domain "gmail.com"
-   smtpmail-smtp-server "smtp.gmail.com"
-   smtpmail-stream-type 'starttls
-   smtpmail-smtp-service 587
-   )
+     (setq
+      mu4e-maildir       "~/Maildir"   ;; top-level Maildir
+      mu4e-sent-folder   "/ibrahim.awwal@gmail.com/sent"       ;; folder for sent messages
+      mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts"     ;; unfinished messages
+      mu4e-trash-folder  "/ibrahim.awwal@gmail.com/trash"      ;; trashed messages
+      mu4e-refile-folder "/ibrahim.awwal@gmail.com/archive"    ;; saved messages
+      user-mail-address "ibrahim.awwal@gmail.com"
+      smtpmail-default-smtp-server "smtp.gmail.com"
+      smtpmail-local-domain "gmail.com"
+      smtpmail-smtp-server "smtp.gmail.com"
+      smtpmail-stream-type 'starttls
+      smtpmail-smtp-service 587
+      )
 
-  (defvar my-mu4e-account-alist
-    '(("ibrahim.awwal@gmail.com"
-       (mu4e-sent-folder "/ibrahim.awwal@gmail.com/sent")
-       (mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts")
-       (user-mail-address "ibrahim.awwal@gmail.com")
-       (smtpmail-default-smtp-server "smtp.gmail.com")
-       (smtpmail-local-domain "gmail.com")
-       (smtpmail-smtp-server "smtp.gmail.com")
-       (smtpmail-smtp-service 587))
-      ("iawwal@eng.ucsd.edu"
-       (mu4e-sent-folder "/iawwal@eng.ucsd.edu/sent")
-       (mu4e-drafts-folder "/iawwal@eng.ucsd.edu/drafts")
-       (user-mail-address "iawwal@eng.ucsd.edu")
-       (smtpmail-default-smtp-server "smtp.gmail.com")
-       (smtpmail-local-domain "eng.ucsd.edu")
-       (smtpmail-smtp-server "smtp.gmail.com")
-       (smtpmail-smtp-service 587))))
+     (defvar my-mu4e-account-alist
+       '(("ibrahim.awwal@gmail.com"
+          (mu4e-sent-folder "/ibrahim.awwal@gmail.com/sent")
+          (mu4e-drafts-folder "/ibrahim.awwal@gmail.com/drafts")
+          (user-mail-address "ibrahim.awwal@gmail.com")
+          (smtpmail-default-smtp-server "smtp.gmail.com")
+          (smtpmail-local-domain "gmail.com")
+          (smtpmail-smtp-server "smtp.gmail.com")
+          (smtpmail-smtp-service 587))
+         ("iawwal@eng.ucsd.edu"
+          (mu4e-sent-folder "/iawwal@eng.ucsd.edu/sent")
+          (mu4e-drafts-folder "/iawwal@eng.ucsd.edu/drafts")
+          (user-mail-address "iawwal@eng.ucsd.edu")
+          (smtpmail-default-smtp-server "smtp.gmail.com")
+          (smtpmail-local-domain "eng.ucsd.edu")
+          (smtpmail-smtp-server "smtp.gmail.com")
+          (smtpmail-smtp-service 587))))
 
-  (defun my-mu4e-set-account ()
-    "Set the account for composing a message."
-    (let* ((account
-            (if mu4e-compose-parent-message
-                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                  (string-match "/\\(.*?\\)/" maildir)
-                  (match-string 1 maildir))
-              (completing-read (format "Compose with account: (%s) "
-                                       (mapconcat #'(lambda (var) (car var)) my-mu4e-account-alist "/"))
-                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                               nil t nil nil (caar my-mu4e-account-alist))))
-           (account-vars (cdr (assoc account my-mu4e-account-alist))))
-      (if account-vars
-          (mapc #'(lambda (var)
-                    (set (car var) (cadr var)))
-                account-vars)
-        (error "No email account found"))))
+     (defun my-mu4e-set-account ()
+       "Set the account for composing a message."
+       (let* ((account
+               (if mu4e-compose-parent-message
+                   (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                     (string-match "/\\(.*?\\)/" maildir)
+                     (match-string 1 maildir))
+                 (completing-read (format "Compose with account: (%s) "
+                                          (mapconcat #'(lambda (var) (car var)) my-mu4e-account-alist "/"))
+                                  (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                                  nil t nil nil (caar my-mu4e-account-alist))))
+              (account-vars (cdr (assoc account my-mu4e-account-alist))))
+         (if account-vars
+             (mapc #'(lambda (var)
+                       (set (car var) (cadr var)))
+                   account-vars)
+           (error "No email account found"))))
 
-  (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
+     (add-hook 'mu4e-compose-pre-hook 'my-mu4e-set-account)
 
-  (setq
-   mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
-   mu4e-update-interval 300)             ;; update every 5 minutes
-  ))
+     (setq
+      mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
+      mu4e-update-interval 300)             ;; update every 5 minutes
+     ))
 
 (defun json-format ()
   (interactive)
@@ -684,13 +613,6 @@ Also returns nil if pid is nil."
 
 (setq c-default-style "linux"
       c-basic-offset 4)
-(add-to-list 'load-path "~/.emacs.d/matlab-emacs")
-(load-library "matlab-load")
-(matlab-cedet-setup)
-(add-hook 'matlab-mode
-          (lambda ()
-            (auto-complete-mode 1)
-            ))
 
 (setq TeX-auto-save t)
 (setq TeX-save-query nil)
@@ -720,7 +642,7 @@ Also returns nil if pid is nil."
 (global-set-key (kbd "C-(") 'sp-backward-barf-sexp)
 (global-set-key (kbd "C-)") 'sp-forward-barf-sexp)
 
-; Persist org mode clocking history over sessions
+                                        ; Persist org mode clocking history over sessions
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 
@@ -783,16 +705,9 @@ Also returns nil if pid is nil."
             (define-key elpy-mode-map (kbd "<C-left>") nil)
             (define-key elpy-mode-map (kbd "<C-right>") nil)))
 
-;; (require 'company-emacs-eclim)
-;; (company-emacs-eclim-setup)
-
 ;; (pdf-tools-install)
 
 ;; (add-hook 'prog-mode-hook #'hs-minor-mode)
-
-(add-hook 'after-init-hook #'global-flycheck-mode)
-
-(setq flycheck-disabled-checkers '(ruby-rubylint))
 
 ;; Colors in term-mode
 (require 'ansi-color)
@@ -820,7 +735,7 @@ Also returns nil if pid is nil."
 (setq mu4e-view-show-images t)
 ;; use imagemagick, if available
 (when (fboundp 'imagemagick-register-types)
-   (imagemagick-register-types))
+  (imagemagick-register-types))
 
 
 ;; don't confirm opening large files
@@ -887,7 +802,7 @@ Also returns nil if pid is nil."
 
 (add-hook 'ruby-mode-hook 'subword-mode)
 
-; This is for pronto/linter output
+                                        ; This is for pronto/linter output
 (add-to-list 'compilation-error-regexp-alist '("^\\(.*?\\):\\([0-9]+\\)" 1 2))
 
 (defun esk-paredit-nonlisp ()
@@ -940,11 +855,11 @@ Also returns nil if pid is nil."
 
 (eval-after-load "hideshow"
   '(add-to-list 'hs-special-modes-alist
-    `(ruby-mode
-      ,(rx (or "def" "class" "module" "do" "{" "[")) ; Block start
-      ,(rx (or "}" "]" "end"))                       ; Block end
-      ,(rx (or "#" "=begin"))                        ; Comment start
-      ruby-forward-sexp nil)))
+                `(ruby-mode
+                  ,(rx (or "def" "class" "module" "do" "{" "[")) ; Block start
+                  ,(rx (or "}" "]" "end"))                       ; Block end
+                  ,(rx (or "#" "=begin"))                        ; Comment start
+                  ruby-forward-sexp nil)))
 
 (provide 'init)
 ;;; init.el ends here
