@@ -421,6 +421,7 @@
 
 (require 'undo-tree)
 (global-undo-tree-mode 1)
+(setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 (defalias 'redo 'undo-tree-redo)
 (global-set-key (kbd "C-z") 'undo) ; 【Ctrl+z】
