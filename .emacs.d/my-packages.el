@@ -8,8 +8,6 @@
 
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(add-to-list 'package-archives
-             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -70,8 +68,8 @@
 
 (use-package magit
   :config
-  (magit-define-popup-switch 'magit-log-popup
-    ?v "Reverse log" "--reverse")
+  ;; (magit-define-popup-switch 'magit-log-popup
+  ;;                            ?v "Reverse log" "--reverse")
   )
 
 (use-package projectile
@@ -99,10 +97,10 @@
   )
 
 (use-package pdf-tools
-             :config
-             ;; (pdf-tools-install)
-             :ensure t
-)
+  :config
+  ;; (pdf-tools-install)
+  :ensure t
+  )
 
 (use-package smart-mode-line
   :defer 5
@@ -165,7 +163,7 @@
   :config
   (add-hook 'css-mode-hook 'skewer-css-mode)
   (add-hook 'html-mode-hook 'skewer-html-mode)
-)
+  )
 
 (use-package js2-mode
   :config
@@ -184,14 +182,6 @@
     '(vagrant-tramp-enable)))
 
 (use-package codesearch)
-
-(use-package eclim
-  :config
-  (require 'eclimd))
-
-(use-package ensime
-  :config
-  (add-hook 'scala-mode-hook 'ensime-scala-mode-hook))
 
 (use-package corral
   :config
@@ -216,8 +206,8 @@
 (use-package coffee-mode
   :init
   (setq coffee-indenters-bol
-  '("class" "for" "if" "else" "unless" "while" "until"
-                               "try" "catch" "finally" "switch" "when"))
+        '("class" "for" "if" "else" "unless" "while" "until"
+          "try" "catch" "finally" "switch" "when"))
   (setq coffee-indenters-eol '(?> ?{ ?\[ ?:)))
 
 (use-package dired-quick-sort
@@ -250,13 +240,13 @@
   (setq flycheck-disabled-checkers '(ruby-rubylint))
 
   (flycheck-define-checker ruby-reek
-                           "A Ruby smell checker using reek
+    "A Ruby smell checker using reek
 See URL `https://github.com/troessner/reek'."
-                           :command ("reek" "--format=xml"
-                                     source)
-                           :standard-input t
-                           :error-parser flycheck-parse-checkstyle
-                           :modes (enh-ruby-mode ruby-mode))
+    :command ("reek" "--format=xml"
+              source)
+    :standard-input t
+    :error-parser flycheck-parse-checkstyle
+    :modes (enh-ruby-mode ruby-mode))
 
   (add-to-list 'flycheck-checkers 'ruby-reek 'append)
 
@@ -290,7 +280,7 @@ See URL `https://github.com/troessner/reek'."
 (use-package tide)
 (use-package vagrant)
 (use-package wc-mode)
-(use-package helm-open-github)
+;; (use-package helm-open-github)
 (use-package web-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
@@ -299,9 +289,6 @@ See URL `https://github.com/troessner/reek'."
               (when (string-equal "tsx" (file-name-extension buffer-file-name))
                 (setup-tide-mode))))
   )
-;; (use-package zoom-frm)
-
-(use-package ruby-block)
 
 (use-package borg)
 
@@ -317,15 +304,20 @@ See URL `https://github.com/troessner/reek'."
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
   )
 
+(use-package activity-watch-mode
+  :config
+  (global-activity-watch-mode)
+  )
+
 (use-package apheleia
   :straight t
   :config
   (apheleia-global-mode +1)
-  (push '(stree . ("stree" "format" filepath)) apheleia-formatters)
+  ;; (push '(stree . ("stree" "format" filepath)) apheleia-formatters)
   (setf (alist-get 'ruby-mode apheleia-mode-alist)
-        'stree)
+        'rubocop)
   (setf (alist-get 'ruby-ts-mode apheleia-mode-alist)
-        'stree)
+        'rubocop)
   (set-variable 'apheleia-log-debug-info t)
   )
 
@@ -359,19 +351,30 @@ See URL `https://github.com/troessner/reek'."
 
 (use-package git-auto-commit-mode)
 
-(use-packag inf-ruby
-            :config
-            (defun inf-ruby-console-script (dir)
-              "Run custom bin/console, console or console.rb in DIR."
-              (interactive (list (inf-ruby-console-read-directory 'script)))
-              (let ((default-directory (file-name-as-directory dir)))
-                (cond
-                 ((file-exists-p "bin/console")
-                  (inf-ruby-console-run "bin/console" "bin/console"))
-                 ((file-exists-p "console.rb")
-                  (inf-ruby-console-run "bundle exec ruby console.rb" "console.rb"))
-                 ((file-exists-p "console")
-                  (inf-ruby-console-run "console" "console")))))
-            )
+(use-package inf-ruby
+  :config
+  (defun inf-ruby-console-script (dir)
+    "Run custom bin/console, console or console.rb in DIR."
+    (interactive (list (inf-ruby-console-read-directory 'script)))
+    (let ((default-directory (file-name-as-directory dir)))
+      (cond
+       ((file-exists-p "bin/console")
+        (inf-ruby-console-run "bin/console" "bin/console"))
+       ((file-exists-p "console.rb")
+        (inf-ruby-console-run "bundle exec ruby console.rb" "console.rb"))
+       ((file-exists-p "console")
+        (inf-ruby-console-run "console" "console")))))
+  )
+
+(use-package treesit-fold
+  :straight (treesit-fold :type git :host github :repo "emacs-tree-sitter/treesit-fold"))
+
+(use-package symbols-outline
+  :config
+  (setq symbols-outline-fetch-fn #'symbols-outline-lsp-fetch)
+  (symbols-outline-follow-mode)
+  )
+
+
 (provide 'my-packages)
 ;;; my-packages.el ends here
