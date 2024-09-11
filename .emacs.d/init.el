@@ -574,6 +574,7 @@
 (add-hook 'ruby-mode-hook 'company-mode)
 (add-hook 'ruby-mode-hook
           (lambda () (rbenv-use-corresponding)))
+(add-hook 'ruby-mode-hook 'eglot-ensure)
 
 (add-hook 'coffee-mode-hook
           (lambda () (set-variable 'tab-width 2)))
@@ -861,6 +862,10 @@ Also returns nil if pid is nil."
                   ,(rx (or "}" "]" "end"))                       ; Block end
                   ,(rx (or "#" "=begin"))                        ; Comment start
                   ruby-forward-sexp nil)))
+
+(symbols-outline-show)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
 
 (provide 'init)
 ;;; init.el ends here
