@@ -35,21 +35,13 @@
                       auto-complete
                       clojure-mode
                       company
-                      company-inf-ruby
-                      edit-server ;; Lets you edit text fields in Chrome using emacs
-                      elscreen
                       expand-region
                       flx
                       flx-ido
-                      gist
                       go-mode
                       helm
-                      helm-c-yasnippet
-                      helm-ls-git
                       lua-mode
                       sass-mode
-                      smex
-                      tabbar-ruler
                       undo-tree
                       yaml-mode
                       yasnippet
