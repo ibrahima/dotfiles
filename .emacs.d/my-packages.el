@@ -325,6 +325,7 @@ See URL `https://github.com/troessner/reek'."
   (setf (alist-get 'ruby-ts-mode apheleia-mode-alist)
         'rubocop)
   (set-variable 'apheleia-log-debug-info t)
+  (set-variable 'apheleia-formatters-respect-indent-level nil)
   )
 
 ;; Highlights the matching opening delimeter when it is off screen
