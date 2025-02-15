@@ -290,8 +290,9 @@ See URL `https://github.com/troessner/reek'."
 
 (use-package borg)
 
-(use-package vterm)
-(use-package multi-vterm)
+(when (eq system-type 'gnu/linux)
+  (use-package vterm)
+  (use-package multi-vterm))
 ;; (elpy-enable)
 
 (use-package copilot
