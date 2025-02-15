@@ -66,8 +66,14 @@
 
 (setq use-package-always-ensure t)
 
+(use-package nerd-icons
+  :custom
+  (nerd-icons-font-family "Symbols Nerd Font Mono")
+  )
+
 (use-package magit
   :config
+  (setopt magit-format-file-function #'magit-format-file-nerd-icons)
   ;; (magit-define-popup-switch 'magit-log-popup
   ;;                            ?v "Reverse log" "--reverse")
   )
