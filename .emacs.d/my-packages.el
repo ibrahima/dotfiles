@@ -315,10 +315,16 @@ See URL `https://github.com/troessner/reek'."
 (use-package copilot
   :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
   :config
+  (setq copilot-indent-offset-warning-disable t)
   (add-hook 'prog-mode-hook 'copilot-mode)
   (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
   (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion)
+  (setq copilot-max-char-warning-disabled t)
   )
+
+(use-package copilot-chat
+  :straight (:host github :repo "chep/copilot-chat.el" :files ("*.el"))
+  :after (request org markdown-mode))
 
 (use-package activity-watch-mode
   :config
@@ -326,7 +332,8 @@ See URL `https://github.com/troessner/reek'."
   )
 
 (use-package apheleia
-  :straight t
+  :straight (apheleia :host github :repo "radian-software/apheleia"
+                      :fork (:repo "ibrahima/apheleia"))
   :config
   (apheleia-global-mode +1)
   ;; (push '(stree . ("stree" "format" filepath)) apheleia-formatters)
@@ -395,6 +402,49 @@ See URL `https://github.com/troessner/reek'."
 (use-package swift-ts-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.swift$" . swift-ts-mode))
+  )
+
+(use-package tiktoken
+  :config
+  (defun tiktoken-count-tokens-in-region (start end)
+    (interactive "r")
+    (if (use-region-p)
+        (let ((region (buffer-substring start end))
+              (enc (tiktoken-encoding-for-model "gpt-4"))
+              )
+          (message  "Region has %d tokens" (tiktoken-count-tokens enc region))))
+    )
+
+  (defun tiktoken-encode-region (start end)
+    (interactive "r")
+    (if (use-region-p)
+        (let ((region (buffer-substring start end))
+              (enc (tiktoken-encoding-for-model "gpt-4"))
+              )
+          (message  "%s" (tiktoken-encode enc region nil))))
+    )
+
+  ;; Add GPT-4o tokenizer to the hash table
+  (defconst tiktoken-model-o200k-base "o200k_base")
+  (puthash tiktoken-model-o200k-base "https://openaipublic.blob.core.windows.net/encodings/o200k_base.tiktoken" tiktoken-model-urls)
+  (puthash "gpt-4o" tiktoken-model-o200k-base tiktoken-model-to-encoding)
+  ;; This doesn't seem to work
+  ;; (tiktoken-encoding-for-model "gpt-4o")
+  )
+
+
+
+;; install claude-code.el
+(use-package eat :ensure t)
+(use-package claude-code :ensure t
+  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest)
+  :config (claude-code-mode)
+  :bind-keymap ("C-c c" . claude-code-command-map))
+
+(use-package efrit
+  :straight (efrit :type git :host github :repo "steveyegge/efrit")
+  :config
+  (setq efrit-model "claude-sonnet-4-20250514")
   )
 
 (provide 'my-packages)

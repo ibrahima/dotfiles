@@ -19,24 +19,51 @@
  '(alert-default-style 'libnotify)
  '(android-mode-sdk-dir "~/android/sdk")
  '(ansi-color-names-vector
-   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
+   ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9"
+    "white"])
  '(asm-comment-char 64)
  '(coffee-tab-width 2)
  '(column-number-mode t)
  '(compilation-scroll-output 'first-error)
+ '(copilot-chat-model "claude-3.5-sonnet")
  '(custom-safe-themes
-   '("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default))
+   '("45631691477ddee3df12013e718689dafa607771e7fd37ebc6c6eb9529a8ede5"
+     "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e"
+     "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f"
+     default))
  '(desktop-restore-eager 10)
  '(eclim-eclipse-dirs
-   '("/opt/eclipse" "/Applications/eclipse" "/usr/lib/eclipse" "/usr/local/lib/eclipse" "/usr/share/eclipse"))
+   '("/opt/eclipse" "/Applications/eclipse" "/usr/lib/eclipse"
+     "/usr/local/lib/eclipse" "/usr/share/eclipse"))
  '(eclim-executable
    "/home/ibrahim/.eclipse/org.eclipse.platform_4.4.2_1473617060_linux_gtk_x86_64/eclim")
  '(eclimd-default-workspace "~/git")
  '(eclimd-wait-for-process nil)
  '(elpy-modules
-   '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-sane-defaults))
+   '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv
+                         elpy-module-highlight-indentation
+                         elpy-module-yasnippet
+                         elpy-module-sane-defaults))
  '(flycheck-checkers
-   '(ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint d-dmd emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy jade javascript-eslint javascript-jshint javascript-gjslint javascript-jscs javascript-standard json-jsonlint json-python-json less lua-luacheck lua perl perl-perlcritic php php-phpmd php-phpcs processing puppet-parser puppet-lint python-flake8 python-pylint python-pycompile r-lintr racket rpm-rpmlint markdown-mdl rst-sphinx rst ruby-rubocop ruby-rubylint ruby ruby-jruby rust-cargo rust sass scala scala-scalastyle scheme-chicken scss-lint scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby))
+   '(ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine
+              chef-foodcritic coffee coffee-coffeelint coq css-csslint
+              d-dmd emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis
+              fortran-gfortran go-gofmt go-golint go-vet go-build
+              go-test go-errcheck go-unconvert groovy haml handlebars
+              haskell-stack-ghc haskell-ghc haskell-hlint html-tidy
+              jade javascript-eslint javascript-jshint
+              javascript-gjslint javascript-jscs javascript-standard
+              json-jsonlint json-python-json less lua-luacheck lua
+              perl perl-perlcritic php php-phpmd php-phpcs processing
+              puppet-parser puppet-lint python-flake8 python-pylint
+              python-pycompile r-lintr racket rpm-rpmlint markdown-mdl
+              rst-sphinx rst ruby-rubocop ruby-rubylint ruby
+              ruby-jruby rust-cargo rust sass scala scala-scalastyle
+              scheme-chicken scss-lint scss sh-bash sh-posix-dash
+              sh-posix-bash sh-zsh sh-shellcheck slim slim-lint
+              sql-sqlint tex-chktex tex-lacheck texinfo
+              typescript-tslint verilog-verilator xml-xmlstarlet
+              xml-xmllint yaml-jsyaml yaml-ruby))
  '(flycheck-rubylintrc "~/.ruby-lint.yml")
  '(flycheck-slim-lint-executable "slim-lint")
  '(flymake-coffee-coffeelint-configuration-file "/home/ibrahim/.coffeelint.json")
@@ -47,130 +74,155 @@
  '(matlab-functions-have-end t)
  '(matlab-indent-function-body t)
  '(matlab-keyword-list
-   '("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end"))
+   '("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif"
+     "else" "endfunction" "return" "break" "continue" "switch" "case"
+     "otherwise" "try" "catch" "tic" "toc" "classdef" "properties"
+     "methods" "enumeration" "cvx_begin" "cvx_end"))
  '(matlab-mode-install-path
-   '(/home/ibrahim/git/matlab-scripts/ /home/ibrahim/Documents/MATLAB/lightspeed/))
+   '(/home/ibrahim/git/matlab-scripts/
+     /home/ibrahim/Documents/MATLAB/lightspeed/))
+ '(minimap-enlarge-certain-faces 'always)
+ '(minimap-highlight-line nil)
+ '(minimap-mode nil)
+ '(minimap-normal-height-faces '(font-lock-function-name-face my-mark-face))
+ '(minimap-recreate-window nil)
  '(org-agenda-custom-commands
-   '(("n" "Agenda and all TODO's"
-      ((agenda "")
-       (alltodo)))
+   '(("n" "Agenda and all TODO's" ((agenda "") (alltodo)))
      ("x" "Examgrader" alltodo ""
-      ((org-agenda-files
-        '("~/SparkleShare/braindump/examgrader.org"))))))
- '(org-agenda-files
-   '("/home/ibrahim/SparkleShare/braindump/android.org" "/home/ibrahim/SparkleShare/braindump/bb8.org" "/home/ibrahim/SparkleShare/braindump/cf_firmware.org" "/home/ibrahim/SparkleShare/braindump/emacs.org" "/home/ibrahim/SparkleShare/braindump/from-mobile.org" "/home/ibrahim/SparkleShare/braindump/gradescope.org" "/home/ibrahim/SparkleShare/braindump/gradschool.org" "/home/ibrahim/SparkleShare/braindump/groupmeeting.org" "/home/ibrahim/SparkleShare/braindump/iot.org" "/home/ibrahim/SparkleShare/braindump/linux.org" "/home/ibrahim/SparkleShare/braindump/misc.org" "/home/ibrahim/SparkleShare/braindump/neuro.org"))
+      ((org-agenda-files '("~/SparkleShare/braindump/examgrader.org"))))))
+ '(org-agenda-files nil)
  '(package-selected-packages
-   '(counsel-projectile helm-open-github dockerfile-mode robe company-lua google-contacts google-maps syslog-mode evil-tutor evil goto-chg company-inf-ruby dumb-jump bundler dired-quick-sort dired-rainbow multi-term nssh ssh-config-mode org pdf-tools company-tern tern fooddice counsel swiper mmm-jinja2 jinja2-mode spotify helm-spotify nlinum terraform-mode mvn slack yaml-mode wsd-mode whitespace-cleanup-mode websocket web-mode web wc-mode visual-regexp-steroids vagrant-tramp vagrant use-package undo-tree turnip tabbar-ruler sws-mode sqlite smex smartparens smart-mode-line smali-mode slime-company slim-mode skewer-mode shorten scala-mode sass-mode rubocop rinari readline-complete react-snippets rbenv rainbow-delimiters pyvenv purty-mode projectile-rails pretty-mode pinboard pg parse-csv paredit-everywhere paradox pandoc-mode org-dashboard nasm-mode multiple-cursors multi-eshell moz-controller mmm-mode markdown-mode mark-multiple malabar-mode magit lxc lui lua-mode litable lcs latex-preview-pane latex-pretty-symbols kv kill-ring-search json-rpc jdee java-snippets jade-mode ipython inf-groovy idomenu ido-ubiquitous iasm-mode hyde httprepl hlinum highlight-indentation helm-ls-git helm-c-yasnippet guile-scheme gscholar-bibtex graphviz-dot-mode gradle-mode go-mode github-theme git-timemachine gist ggtags flycheck-pyflakes flx-ido find-file-in-project expand-region esqlite ensime emacsql emacs-eclim elscreen edit-server edbi-sqlite edbi-minor-mode dropbox dot-mode docbook disaster dired-single dired+ diffview diffscuss-mode diff-hl darkroom csv-mode creole-mode corral company-quickhelp company-jedi company-cider company-anaconda color-identifiers-mode coffee-mode codesearch closure-lint-mode clojure-test-mode clojure-cheatsheet circe bison-mode beacon auto-complete auctex-latexmk ansible android-mode ag ack-and-a-half ack ace-window ace-jump-mode 4clojure 2048-game))
+   '(counsel-projectile helm-open-github dockerfile-mode robe company-lua
+                        google-contacts google-maps syslog-mode
+                        evil-tutor evil goto-chg company-inf-ruby
+                        dumb-jump bundler dired-quick-sort
+                        dired-rainbow multi-term nssh ssh-config-mode
+                        org pdf-tools company-tern tern fooddice
+                        counsel swiper mmm-jinja2 jinja2-mode spotify
+                        helm-spotify nlinum terraform-mode mvn slack
+                        yaml-mode wsd-mode whitespace-cleanup-mode
+                        websocket web-mode web wc-mode
+                        visual-regexp-steroids vagrant-tramp vagrant
+                        use-package undo-tree turnip tabbar-ruler
+                        sws-mode sqlite smex smartparens
+                        smart-mode-line smali-mode slime-company
+                        slim-mode skewer-mode shorten scala-mode
+                        sass-mode rubocop rinari readline-complete
+                        react-snippets rbenv rainbow-delimiters pyvenv
+                        purty-mode projectile-rails pretty-mode
+                        pinboard pg parse-csv paredit-everywhere
+                        paradox pandoc-mode org-dashboard nasm-mode
+                        multiple-cursors multi-eshell moz-controller
+                        mmm-mode markdown-mode mark-multiple
+                        malabar-mode magit lxc lui lua-mode litable
+                        lcs latex-preview-pane latex-pretty-symbols kv
+                        kill-ring-search json-rpc jdee java-snippets
+                        jade-mode ipython inf-groovy idomenu
+                        ido-ubiquitous iasm-mode hyde httprepl hlinum
+                        highlight-indentation helm-ls-git
+                        helm-c-yasnippet guile-scheme gscholar-bibtex
+                        graphviz-dot-mode gradle-mode go-mode
+                        github-theme git-timemachine gist ggtags
+                        flycheck-pyflakes flx-ido find-file-in-project
+                        expand-region esqlite ensime emacsql
+                        emacs-eclim elscreen edit-server edbi-sqlite
+                        edbi-minor-mode dropbox dot-mode docbook
+                        disaster dired-single dired+ diffview
+                        diffscuss-mode diff-hl darkroom csv-mode
+                        creole-mode corral company-quickhelp
+                        company-jedi company-cider company-anaconda
+                        color-identifiers-mode coffee-mode codesearch
+                        closure-lint-mode clojure-test-mode
+                        clojure-cheatsheet circe bison-mode beacon
+                        auto-complete auctex-latexmk ansible
+                        android-mode ag ack-and-a-half ack ace-window
+                        ace-jump-mode 4clojure 2048-game))
+ '(package-vc-selected-packages
+   '((claude-code :url "https://github.com/stevemolitor/claude-code.el")))
  '(paradox-automatically-star t)
  '(paradox-execute-asynchronously t)
  '(paradox-github-token "11a0faeff9586db82e7865c4951e8019711ea69d")
  '(paradox-spinner-type 'horizontal-breathing)
  '(pinboard-url "http://feeds.pinboard.in/json/u:ibrahima/?count=10")
  '(projectile-project-root-files-functions
-   '(projectile-root-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring))
+   '(projectile-root-local projectile-root-bottom-up
+                           projectile-root-top-down
+                           projectile-root-top-down-recurring))
  '(projectile-project-root-functions
-   '(projectile-root-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring))
+   '(projectile-root-local projectile-root-bottom-up
+                           projectile-root-top-down
+                           projectile-root-top-down-recurring))
  '(ruby-align-chained-calls t)
  '(safe-local-variable-values
-   '((c-comment-only-line-offset 0 . 0)
+   '((eval when
+           (and buffer-file-name
+                (string-suffix-p "db/schema.rb" buffer-file-name))
+           (setq-local apheleia-inhibit t))
+     (gac-automatically-push-p . t) (c-comment-only-line-offset 0 . 0)
      (eval progn
            (defun my/point-in-defun-declaration-p nil
              (let
-                 ((bod
+                 ((bod (save-excursion (c-beginning-of-defun) (point))))
+               (<= bod (point)
                    (save-excursion
-                     (c-beginning-of-defun)
-                     (point))))
-               (<= bod
-                   (point)
-                   (save-excursion
-                     (goto-char bod)
-                     (re-search-forward "{")
-                     (point)))))
-           (defun my/is-string-concatenation-p nil "Returns true if the previous line is a string concatenation"
-                  (save-excursion
-                    (let
-                        ((start
-                          (point)))
-                      (forward-line -1)
-                      (if
-                          (re-search-forward " \\+$" start t)
-                          t nil))))
-           (defun my/inside-java-lambda-p nil "Returns true if point is the first statement inside of a lambda"
-                  (save-excursion
-                    (c-beginning-of-statement-1)
-                    (let
-                        ((start
-                          (point)))
-                      (forward-line -1)
-                      (if
-                          (search-forward " -> {" start t)
-                          t nil))))
-           (defun my/trailing-paren-p nil "Returns true if point is a training paren and semicolon"
-                  (save-excursion
-                    (end-of-line)
-                    (let
-                        ((endpoint
-                          (point)))
-                      (beginning-of-line)
-                      (if
-                          (re-search-forward "[ ]*);$" endpoint t)
-                          t nil))))
-           (defun my/prev-line-call-with-no-args-p nil "Return true if the previous line is a function call with no arguments"
-                  (save-excursion
-                    (let
-                        ((start
-                          (point)))
-                      (forward-line -1)
-                      (if
-                          (re-search-forward ".($" start t)
-                          t nil))))
-           (defun my/arglist-cont-nonempty-indentation
-               (arg)
+                     (goto-char bod) (re-search-forward "{") (point)))))
+           (defun my/is-string-concatenation-p nil
+             "Returns true if the previous line is a string concatenation"
+             (save-excursion
+               (let ((start (point)))
+                 (forward-line -1)
+                 (if (re-search-forward " \\+$" start t) t nil))))
+           (defun my/inside-java-lambda-p nil
+             "Returns true if point is the first statement inside of a lambda"
+             (save-excursion
+               (c-beginning-of-statement-1)
+               (let ((start (point)))
+                 (forward-line -1)
+                 (if (search-forward " -> {" start t) t nil))))
+           (defun my/trailing-paren-p nil
+             "Returns true if point is a training paren and semicolon"
+             (save-excursion
+               (end-of-line)
+               (let ((endpoint (point)))
+                 (beginning-of-line)
+                 (if (re-search-forward "[ ]*);$" endpoint t) t nil))))
+           (defun my/prev-line-call-with-no-args-p nil
+             "Return true if the previous line is a function call with no arguments"
+             (save-excursion
+               (let ((start (point)))
+                 (forward-line -1)
+                 (if (re-search-forward ".($" start t) t nil))))
+           (defun my/arglist-cont-nonempty-indentation (arg)
+             (if (my/inside-java-lambda-p) '+
+               (if (my/is-string-concatenation-p) 16
+                 (unless (my/point-in-defun-declaration-p) '++))))
+           (defun my/statement-block-intro (arg)
              (if
-                 (my/inside-java-lambda-p)
-                 '+
-               (if
-                   (my/is-string-concatenation-p)
-                   16
-                 (unless
-                     (my/point-in-defun-declaration-p)
-                   '++))))
-           (defun my/statement-block-intro
-               (arg)
-             (if
-                 (and
-                  (c-at-statement-start-p)
-                  (my/inside-java-lambda-p))
-                 0 '+))
-           (defun my/block-close
-               (arg)
-             (if
-                 (my/inside-java-lambda-p)
-                 '- 0))
-           (defun my/arglist-close
-               (arg)
-             (if
-                 (my/trailing-paren-p)
-                 0 '--))
-           (defun my/arglist-intro
-               (arg)
-             (if
-                 (my/prev-line-call-with-no-args-p)
-                 '++ 0))
+                 (and (c-at-statement-start-p)
+                      (my/inside-java-lambda-p))
+                 0
+               '+))
+           (defun my/block-close (arg)
+             (if (my/inside-java-lambda-p) '- 0))
+           (defun my/arglist-close (arg)
+             (if (my/trailing-paren-p) 0 '--))
+           (defun my/arglist-intro (arg)
+             (if (my/prev-line-call-with-no-args-p) '++ 0))
            (c-set-offset 'inline-open 0)
            (c-set-offset 'topmost-intro-cont '+)
-           (c-set-offset 'statement-block-intro 'my/statement-block-intro)
+           (c-set-offset 'statement-block-intro
+                         'my/statement-block-intro)
            (c-set-offset 'block-close 'my/block-close)
            (c-set-offset 'knr-argdecl-intro '+)
            (c-set-offset 'substatement-open '+)
            (c-set-offset 'substatement-label '+)
-           (c-set-offset 'case-label '+)
-           (c-set-offset 'label '+)
+           (c-set-offset 'case-label '+) (c-set-offset 'label '+)
            (c-set-offset 'statement-case-open '+)
            (c-set-offset 'statement-cont '++)
            (c-set-offset 'arglist-intro 'my/arglist-intro)
            (c-set-offset 'arglist-cont-nonempty
-                         '(my/arglist-cont-nonempty-indentation c-lineup-arglist))
+                         '(my/arglist-cont-nonempty-indentation
+                           c-lineup-arglist))
            (c-set-offset 'arglist-close 'my/arglist-close)
            (c-set-offset 'inexpr-class 0)
            (c-set-offset 'access-label 0)
@@ -178,63 +230,51 @@
            (c-set-offset 'inher-cont '++)
            (c-set-offset 'brace-list-intro '+)
            (c-set-offset 'func-decl-cont '++))
-     (encoding . utf-8)
-     (flycheck-disabled-checkers 'ruby-rubylint)
-     (projectile-project-root . /home/ibrahim/gradescope/gradescope-app/)
-     (projectile-project-root . "/home/ibrahim/gradescope/gradescope-app/")
-     (projectile-custom-root . "/home/ibrahim/gradescope/gradescope-app/")
+     (encoding . utf-8) (flycheck-disabled-checkers 'ruby-rubylint)
+     (projectile-project-root
+      . /home/ibrahim/gradescope/gradescope-app/)
+     (projectile-project-root
+      . "/home/ibrahim/gradescope/gradescope-app/")
+     (projectile-custom-root
+      . "/home/ibrahim/gradescope/gradescope-app/")
      (projectile-custom-root . "/home/ibrahim/git/gradescope-app/")
      (projectile-custom-root . "~/git/gradescope-app")
      (projectile-custom-root . ~/git/gradescope-app/)
      (eval when
-           (and
-            (buffer-file-name)
-            (file-regular-p
-             (buffer-file-name))
-            (string-match-p "^[^.]"
-                            (buffer-file-name)))
+           (and (buffer-file-name) (file-regular-p (buffer-file-name))
+                (string-match-p "^[^.]" (buffer-file-name)))
            (emacs-lisp-mode)
-           (when
-               (fboundp 'flycheck-mode)
-             (flycheck-mode -1))
-           (unless
-               (featurep 'package-build)
-             (let
-                 ((load-path
-                   (cons ".." load-path)))
+           (when (fboundp 'flycheck-mode) (flycheck-mode -1))
+           (unless (featurep 'package-build)
+             (let ((load-path (cons ".." load-path)))
                (require 'package-build)))
            (package-build-minor-mode)
-           (set
-            (make-local-variable 'package-build-working-dir)
-            (expand-file-name "../working/"))
-           (set
-            (make-local-variable 'package-build-archive-dir)
-            (expand-file-name "../packages/"))
-           (set
-            (make-local-variable 'package-build-recipes-dir)
-            default-directory))
-     (comment-start quote @)
-     (comment-start . @)
-     (TeX-master . "ProbabilityStatistics")
-     (TeX-engine . pdflatex)
-     (setq tab-width 2)
-     (setq ruby-indent-tabs-mode nil)
+           (set (make-local-variable 'package-build-working-dir)
+                (expand-file-name "../working/"))
+           (set (make-local-variable 'package-build-archive-dir)
+                (expand-file-name "../packages/"))
+           (set (make-local-variable 'package-build-recipes-dir)
+                default-directory))
+     (comment-start quote @) (comment-start . @)
+     (TeX-master . "ProbabilityStatistics") (TeX-engine . pdflatex)
+     (setq tab-width 2) (setq ruby-indent-tabs-mode nil)
      (ruby-compilation-executable . "ruby")
      (ruby-compilation-executable . "ruby1.8")
      (ruby-compilation-executable . "ruby1.9")
      (ruby-compilation-executable . "rbx")
      (ruby-compilation-executable . "jruby")
-     (whitespace-line-column . 80)
-     (lexical-binding . t)))
+     (whitespace-line-column . 80) (lexical-binding . t)))
  '(send-mail-function 'smtpmail-send-it)
  '(show-paren-mode t)
- '(typescript-indent-level 2))
+ '(typescript-indent-level 2)
+ '(warning-suppress-types '((use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 120 :width normal))))
+ '(minimap-font-face ((t (:height 30 :family "DejaVu Sans Mono")))))
 
 (require 'cl)
 (require 'hippie-exp)
@@ -512,8 +552,8 @@
 
 ;; (add-hook 'ruby-mode-hook 'robe-mode)
 (add-hook 'ruby-mode-hook 'company-mode)
-(add-hook 'ruby-mode-hook
-          (lambda () (rbenv-use-corresponding)))
+;; (add-hook 'ruby-mode-hook
+;;           (lambda () (rbenv-use-corresponding)))
 (add-hook 'ruby-mode-hook 'eglot-ensure)
 
 (add-hook 'coffee-mode-hook
@@ -573,10 +613,30 @@ Also returns nil if pid is nil."
             (font-lock-add-keywords nil
                                     '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t)))))
 
+(defface my-todo-face
+  '((t (:foreground "red" :weight bold)))
+  "Face for TODO keywords in comments.")
+
+(defvar my-todo-face 'my-todo-face
+  "Face used to highlight TODO keywords in comments.")
+
 (defun highlight-todos ()
   (font-lock-add-keywords nil
                           '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t))))
+
 (add-hook 'prog-mode-hook 'highlight-todos)
+
+(defface my-mark-face
+  '((t (:foreground "red" :weight bold)))
+  "Face for MARK keywords in comments.")
+
+(defvar my-mark-face 'my-mark-face
+  "Face used to highlight MARK keywords in comments.")
+
+(defun highlight-marks ()
+  (font-lock-add-keywords nil
+                          '(("\\<\\(MARK\\)" 1 my-mark-face t))))
+
 
 (global-set-key (kbd "C-9") 'sp-backward-slurp-sexp)
 (global-set-key (kbd "C-0") 'sp-forward-slurp-sexp)
@@ -806,6 +866,14 @@ Also returns nil if pid is nil."
 (symbols-outline-show)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
+
+;; The following settings might interact poorly with magit commit windows
+;; Make switch-to-buffer obey display rules
+;; (setq switch-to-buffer-obey-display-actions t)
+
+;; ;; Always use the current window for buffers chosen via switch-to-buffer
+;; (add-to-list 'display-buffer-alist
+;;              '("." (display-buffer-same-window)))
 
 (provide 'init)
 ;;; init.el ends here
