@@ -58,6 +58,16 @@
 
 (setq use-package-always-ensure t)
 
+(use-package exec-path-from-shell
+  :custom
+  (exec-path-from-shell-arguments '("-l"))
+  (exec-path-from-shell-check-startup-files nil)
+  (exec-path-from-shell-debug nil)
+
+  :config
+  (when (memq window-system '(mac ns x pgtk))
+    (exec-path-from-shell-initialize)))
+
 (use-package nerd-icons
   :custom
   (nerd-icons-font-family "Symbols Nerd Font Mono")
@@ -80,7 +90,8 @@
 
 (use-package projectile-rails
   :config
-  (define-key projectile-rails-mode-map (kbd "C-c r H") 'hydra-projectile-rails/body)
+  (define-key projectile-rails-mode-map (kbd "C-c r") 'projectile-rails-command-map)
+  ;; (define-key projectile-rails-mode-map (kbd "C-c r H") 'hydra-projectile-rails/body)
   )
 
 (use-package ripgrep)
@@ -111,6 +122,11 @@
 (use-package groovy-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.gradle$" . groovy-mode))
+  )
+
+(use-package kotlin-ts-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.kt$" . kotlin-ts-mode))
   )
 
 (use-package gradle-mode)
@@ -168,6 +184,7 @@
   (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
   (add-hook 'js2-mode-hook 'skewer-mode)
   (add-hook 'js2-mode-hook (lambda () (setq js-switch-indent-offset 2)))
+  (add-hook 'js2-mode-hook (lambda () (set-variable 'indent-tabs-mode nil)))
   )
 
 (use-package js2-refactor
@@ -375,6 +392,10 @@ See URL `https://github.com/troessner/reek'."
   (symbols-outline-follow-mode)
   )
 
+(use-package swift-ts-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.swift$" . swift-ts-mode))
+  )
 
 (provide 'my-packages)
 ;;; my-packages.el ends here

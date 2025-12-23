@@ -16,73 +16,63 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(alert-default-style (quote libnotify))
+ '(alert-default-style 'libnotify)
  '(android-mode-sdk-dir "~/android/sdk")
  '(ansi-color-names-vector
    ["black" "#d55e00" "#009e73" "#f8ec59" "#0072b2" "#cc79a7" "#56b4e9" "white"])
  '(asm-comment-char 64)
  '(coffee-tab-width 2)
  '(column-number-mode t)
- '(compilation-scroll-output (quote first-error))
+ '(compilation-scroll-output 'first-error)
  '(custom-safe-themes
-   (quote
-    ("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default)))
+   '("756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "21d9280256d9d3cf79cbcf62c3e7f3f243209e6251b215aede5026e0c5ad853f" default))
  '(desktop-restore-eager 10)
  '(eclim-eclipse-dirs
-   (quote
-    ("/opt/eclipse" "/Applications/eclipse" "/usr/lib/eclipse" "/usr/local/lib/eclipse" "/usr/share/eclipse")))
+   '("/opt/eclipse" "/Applications/eclipse" "/usr/lib/eclipse" "/usr/local/lib/eclipse" "/usr/share/eclipse"))
  '(eclim-executable
    "/home/ibrahim/.eclipse/org.eclipse.platform_4.4.2_1473617060_linux_gtk_x86_64/eclim")
  '(eclimd-default-workspace "~/git")
  '(eclimd-wait-for-process nil)
  '(elpy-modules
-   (quote
-    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-sane-defaults)))
+   '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-sane-defaults))
  '(flycheck-checkers
-   (quote
-    (ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint d-dmd emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy jade javascript-eslint javascript-jshint javascript-gjslint javascript-jscs javascript-standard json-jsonlint json-python-json less lua-luacheck lua perl perl-perlcritic php php-phpmd php-phpcs processing puppet-parser puppet-lint python-flake8 python-pylint python-pycompile r-lintr racket rpm-rpmlint markdown-mdl rst-sphinx rst ruby-rubocop ruby-rubylint ruby ruby-jruby rust-cargo rust sass scala scala-scalastyle scheme-chicken scss-lint scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby)))
+   '(ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint d-dmd emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy jade javascript-eslint javascript-jshint javascript-gjslint javascript-jscs javascript-standard json-jsonlint json-python-json less lua-luacheck lua perl perl-perlcritic php php-phpmd php-phpcs processing puppet-parser puppet-lint python-flake8 python-pylint python-pycompile r-lintr racket rpm-rpmlint markdown-mdl rst-sphinx rst ruby-rubocop ruby-rubylint ruby ruby-jruby rust-cargo rust sass scala scala-scalastyle scheme-chicken scss-lint scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby))
  '(flycheck-rubylintrc "~/.ruby-lint.yml")
  '(flycheck-slim-lint-executable "slim-lint")
  '(flymake-coffee-coffeelint-configuration-file "/home/ibrahim/.coffeelint.json")
  '(httpd-root "~/git/console-mock/")
  '(jdee-server-dir "~/.emacs.d/")
  '(js-indent-level 2)
- '(matlab-completion-technique (quote increment))
+ '(matlab-completion-technique 'increment)
  '(matlab-functions-have-end t)
  '(matlab-indent-function-body t)
  '(matlab-keyword-list
-   (quote
-    ("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end")))
+   '("global" "persistent" "for" "parfor" "while" "spmd" "if" "elseif" "else" "endfunction" "return" "break" "continue" "switch" "case" "otherwise" "try" "catch" "tic" "toc" "classdef" "properties" "methods" "enumeration" "cvx_begin" "cvx_end"))
  '(matlab-mode-install-path
-   (quote
-    (/home/ibrahim/git/matlab-scripts/ /home/ibrahim/Documents/MATLAB/lightspeed/)))
+   '(/home/ibrahim/git/matlab-scripts/ /home/ibrahim/Documents/MATLAB/lightspeed/))
  '(org-agenda-custom-commands
-   (quote
-    (("n" "Agenda and all TODO's"
+   '(("n" "Agenda and all TODO's"
       ((agenda "")
        (alltodo)))
      ("x" "Examgrader" alltodo ""
       ((org-agenda-files
-        (quote
-         ("~/SparkleShare/braindump/examgrader.org"))))))))
+        '("~/SparkleShare/braindump/examgrader.org"))))))
  '(org-agenda-files
-   (quote
-    ("/home/ibrahim/SparkleShare/braindump/android.org" "/home/ibrahim/SparkleShare/braindump/bb8.org" "/home/ibrahim/SparkleShare/braindump/cf_firmware.org" "/home/ibrahim/SparkleShare/braindump/emacs.org" "/home/ibrahim/SparkleShare/braindump/from-mobile.org" "/home/ibrahim/SparkleShare/braindump/gradescope.org" "/home/ibrahim/SparkleShare/braindump/gradschool.org" "/home/ibrahim/SparkleShare/braindump/groupmeeting.org" "/home/ibrahim/SparkleShare/braindump/iot.org" "/home/ibrahim/SparkleShare/braindump/linux.org" "/home/ibrahim/SparkleShare/braindump/misc.org" "/home/ibrahim/SparkleShare/braindump/neuro.org")))
+   '("/home/ibrahim/SparkleShare/braindump/android.org" "/home/ibrahim/SparkleShare/braindump/bb8.org" "/home/ibrahim/SparkleShare/braindump/cf_firmware.org" "/home/ibrahim/SparkleShare/braindump/emacs.org" "/home/ibrahim/SparkleShare/braindump/from-mobile.org" "/home/ibrahim/SparkleShare/braindump/gradescope.org" "/home/ibrahim/SparkleShare/braindump/gradschool.org" "/home/ibrahim/SparkleShare/braindump/groupmeeting.org" "/home/ibrahim/SparkleShare/braindump/iot.org" "/home/ibrahim/SparkleShare/braindump/linux.org" "/home/ibrahim/SparkleShare/braindump/misc.org" "/home/ibrahim/SparkleShare/braindump/neuro.org"))
  '(package-selected-packages
-   (quote
-    (counsel-projectile helm-open-github dockerfile-mode robe company-lua google-contacts google-maps syslog-mode evil-tutor evil goto-chg company-inf-ruby dumb-jump bundler dired-quick-sort dired-rainbow multi-term nssh ssh-config-mode org pdf-tools company-tern tern fooddice counsel swiper mmm-jinja2 jinja2-mode spotify helm-spotify nlinum terraform-mode mvn slack yaml-mode wsd-mode whitespace-cleanup-mode websocket web-mode web wc-mode visual-regexp-steroids vagrant-tramp vagrant use-package undo-tree turnip tabbar-ruler sws-mode sqlite smex smartparens smart-mode-line smali-mode slime-company slim-mode skewer-mode shorten scala-mode sass-mode rubocop rinari readline-complete react-snippets rbenv rainbow-delimiters pyvenv purty-mode projectile-rails pretty-mode pinboard pg parse-csv paredit-everywhere paradox pandoc-mode org-dashboard nasm-mode multiple-cursors multi-eshell moz-controller mmm-mode markdown-mode mark-multiple malabar-mode magit lxc lui lua-mode litable lcs latex-preview-pane latex-pretty-symbols kv kill-ring-search json-rpc jdee java-snippets jade-mode ipython inf-groovy idomenu ido-ubiquitous iasm-mode hyde httprepl hlinum highlight-indentation helm-ls-git helm-c-yasnippet guile-scheme gscholar-bibtex graphviz-dot-mode gradle-mode go-mode github-theme git-timemachine gist ggtags flycheck-pyflakes flx-ido find-file-in-project expand-region esqlite ensime emacsql emacs-eclim elscreen edit-server edbi-sqlite edbi-minor-mode dropbox dot-mode docbook disaster dired-single dired+ diffview diffscuss-mode diff-hl darkroom csv-mode creole-mode corral company-quickhelp company-jedi company-cider company-anaconda color-identifiers-mode coffee-mode codesearch closure-lint-mode clojure-test-mode clojure-cheatsheet circe bison-mode beacon auto-complete auctex-latexmk ansible android-mode ag ack-and-a-half ack ace-window ace-jump-mode 4clojure 2048-game)))
+   '(counsel-projectile helm-open-github dockerfile-mode robe company-lua google-contacts google-maps syslog-mode evil-tutor evil goto-chg company-inf-ruby dumb-jump bundler dired-quick-sort dired-rainbow multi-term nssh ssh-config-mode org pdf-tools company-tern tern fooddice counsel swiper mmm-jinja2 jinja2-mode spotify helm-spotify nlinum terraform-mode mvn slack yaml-mode wsd-mode whitespace-cleanup-mode websocket web-mode web wc-mode visual-regexp-steroids vagrant-tramp vagrant use-package undo-tree turnip tabbar-ruler sws-mode sqlite smex smartparens smart-mode-line smali-mode slime-company slim-mode skewer-mode shorten scala-mode sass-mode rubocop rinari readline-complete react-snippets rbenv rainbow-delimiters pyvenv purty-mode projectile-rails pretty-mode pinboard pg parse-csv paredit-everywhere paradox pandoc-mode org-dashboard nasm-mode multiple-cursors multi-eshell moz-controller mmm-mode markdown-mode mark-multiple malabar-mode magit lxc lui lua-mode litable lcs latex-preview-pane latex-pretty-symbols kv kill-ring-search json-rpc jdee java-snippets jade-mode ipython inf-groovy idomenu ido-ubiquitous iasm-mode hyde httprepl hlinum highlight-indentation helm-ls-git helm-c-yasnippet guile-scheme gscholar-bibtex graphviz-dot-mode gradle-mode go-mode github-theme git-timemachine gist ggtags flycheck-pyflakes flx-ido find-file-in-project expand-region esqlite ensime emacsql emacs-eclim elscreen edit-server edbi-sqlite edbi-minor-mode dropbox dot-mode docbook disaster dired-single dired+ diffview diffscuss-mode diff-hl darkroom csv-mode creole-mode corral company-quickhelp company-jedi company-cider company-anaconda color-identifiers-mode coffee-mode codesearch closure-lint-mode clojure-test-mode clojure-cheatsheet circe bison-mode beacon auto-complete auctex-latexmk ansible android-mode ag ack-and-a-half ack ace-window ace-jump-mode 4clojure 2048-game))
  '(paradox-automatically-star t)
  '(paradox-execute-asynchronously t)
- '(paradox-github-token "11a0faeff9586db82e7865c4951e8019711ea69d" t)
- '(paradox-spinner-type (quote horizontal-breathing))
+ '(paradox-github-token "11a0faeff9586db82e7865c4951e8019711ea69d")
+ '(paradox-spinner-type 'horizontal-breathing)
  '(pinboard-url "http://feeds.pinboard.in/json/u:ibrahima/?count=10")
  '(projectile-project-root-files-functions
-   (quote
-    (projectile-root-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring)))
+   '(projectile-root-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring))
+ '(projectile-project-root-functions
+   '(projectile-root-local projectile-root-bottom-up projectile-root-top-down projectile-root-top-down-recurring))
  '(ruby-align-chained-calls t)
  '(safe-local-variable-values
-   (quote
-    ((c-comment-only-line-offset 0 . 0)
+   '((c-comment-only-line-offset 0 . 0)
      (eval progn
            (defun my/point-in-defun-declaration-p nil
              (let
@@ -138,103 +128,58 @@
                (arg)
              (if
                  (my/inside-java-lambda-p)
-                 (quote +)
+                 '+
                (if
                    (my/is-string-concatenation-p)
                    16
                  (unless
                      (my/point-in-defun-declaration-p)
-                   (quote ++)))))
+                   '++))))
            (defun my/statement-block-intro
                (arg)
              (if
                  (and
                   (c-at-statement-start-p)
                   (my/inside-java-lambda-p))
-                 0
-               (quote +)))
+                 0 '+))
            (defun my/block-close
                (arg)
              (if
                  (my/inside-java-lambda-p)
-                 (quote -)
-               0))
+                 '- 0))
            (defun my/arglist-close
                (arg)
              (if
                  (my/trailing-paren-p)
-                 0
-               (quote --)))
+                 0 '--))
            (defun my/arglist-intro
                (arg)
              (if
                  (my/prev-line-call-with-no-args-p)
-                 (quote ++)
-               0))
-           (c-set-offset
-            (quote inline-open)
-            0)
-           (c-set-offset
-            (quote topmost-intro-cont)
-            (quote +))
-           (c-set-offset
-            (quote statement-block-intro)
-            (quote my/statement-block-intro))
-           (c-set-offset
-            (quote block-close)
-            (quote my/block-close))
-           (c-set-offset
-            (quote knr-argdecl-intro)
-            (quote +))
-           (c-set-offset
-            (quote substatement-open)
-            (quote +))
-           (c-set-offset
-            (quote substatement-label)
-            (quote +))
-           (c-set-offset
-            (quote case-label)
-            (quote +))
-           (c-set-offset
-            (quote label)
-            (quote +))
-           (c-set-offset
-            (quote statement-case-open)
-            (quote +))
-           (c-set-offset
-            (quote statement-cont)
-            (quote ++))
-           (c-set-offset
-            (quote arglist-intro)
-            (quote my/arglist-intro))
-           (c-set-offset
-            (quote arglist-cont-nonempty)
-            (quote
-             (my/arglist-cont-nonempty-indentation c-lineup-arglist)))
-           (c-set-offset
-            (quote arglist-close)
-            (quote my/arglist-close))
-           (c-set-offset
-            (quote inexpr-class)
-            0)
-           (c-set-offset
-            (quote access-label)
-            0)
-           (c-set-offset
-            (quote inher-intro)
-            (quote ++))
-           (c-set-offset
-            (quote inher-cont)
-            (quote ++))
-           (c-set-offset
-            (quote brace-list-intro)
-            (quote +))
-           (c-set-offset
-            (quote func-decl-cont)
-            (quote ++)))
+                 '++ 0))
+           (c-set-offset 'inline-open 0)
+           (c-set-offset 'topmost-intro-cont '+)
+           (c-set-offset 'statement-block-intro 'my/statement-block-intro)
+           (c-set-offset 'block-close 'my/block-close)
+           (c-set-offset 'knr-argdecl-intro '+)
+           (c-set-offset 'substatement-open '+)
+           (c-set-offset 'substatement-label '+)
+           (c-set-offset 'case-label '+)
+           (c-set-offset 'label '+)
+           (c-set-offset 'statement-case-open '+)
+           (c-set-offset 'statement-cont '++)
+           (c-set-offset 'arglist-intro 'my/arglist-intro)
+           (c-set-offset 'arglist-cont-nonempty
+                         '(my/arglist-cont-nonempty-indentation c-lineup-arglist))
+           (c-set-offset 'arglist-close 'my/arglist-close)
+           (c-set-offset 'inexpr-class 0)
+           (c-set-offset 'access-label 0)
+           (c-set-offset 'inher-intro '++)
+           (c-set-offset 'inher-cont '++)
+           (c-set-offset 'brace-list-intro '+)
+           (c-set-offset 'func-decl-cont '++))
      (encoding . utf-8)
-     (flycheck-disabled-checkers
-      (quote ruby-rubylint))
+     (flycheck-disabled-checkers 'ruby-rubylint)
      (projectile-project-root . /home/ibrahim/gradescope/gradescope-app/)
      (projectile-project-root . "/home/ibrahim/gradescope/gradescope-app/")
      (projectile-custom-root . "/home/ibrahim/gradescope/gradescope-app/")
@@ -250,29 +195,23 @@
                             (buffer-file-name)))
            (emacs-lisp-mode)
            (when
-               (fboundp
-                (quote flycheck-mode))
+               (fboundp 'flycheck-mode)
              (flycheck-mode -1))
            (unless
-               (featurep
-                (quote package-build))
+               (featurep 'package-build)
              (let
                  ((load-path
                    (cons ".." load-path)))
-               (require
-                (quote package-build))))
+               (require 'package-build)))
            (package-build-minor-mode)
            (set
-            (make-local-variable
-             (quote package-build-working-dir))
+            (make-local-variable 'package-build-working-dir)
             (expand-file-name "../working/"))
            (set
-            (make-local-variable
-             (quote package-build-archive-dir))
+            (make-local-variable 'package-build-archive-dir)
             (expand-file-name "../packages/"))
            (set
-            (make-local-variable
-             (quote package-build-recipes-dir))
+            (make-local-variable 'package-build-recipes-dir)
             default-directory))
      (comment-start quote @)
      (comment-start . @)
@@ -286,9 +225,10 @@
      (ruby-compilation-executable . "rbx")
      (ruby-compilation-executable . "jruby")
      (whitespace-line-column . 80)
-     (lexical-binding . t))))
- '(send-mail-function (quote smtpmail-send-it))
- '(show-paren-mode t))
+     (lexical-binding . t)))
+ '(send-mail-function 'smtpmail-send-it)
+ '(show-paren-mode t)
+ '(typescript-indent-level 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
