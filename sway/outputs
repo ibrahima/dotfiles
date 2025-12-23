@@ -1,0 +1,21 @@
+output "Lenovo Group Limited LEN P27u-10 0x46415041" {
+    mode 3840x2160@59.997Hz
+    pos 0 0
+    scale 1.5
+    adaptive_sync off
+    dpms on
+}
+output "Dell Inc. DELL U2723QE DMDWM04" {
+    mode 3840x2160@59.997Hz
+    pos 2560 0
+    scale 1.5
+    adaptive_sync off
+    dpms on
+}
+output "eDP-1" {
+    mode 2880x1920@120.0Hz
+    pos 3120 1440
+    scale 2.0
+    adaptive_sync on
+    dpms on
+}
