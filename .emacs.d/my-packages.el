@@ -312,6 +312,8 @@ See URL `https://github.com/troessner/reek'."
   (use-package multi-vterm))
 ;; (elpy-enable)
 
+(use-package markdown-mode)
+
 (use-package copilot
   :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
   :config
